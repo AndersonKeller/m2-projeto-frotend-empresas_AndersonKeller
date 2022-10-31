@@ -12,6 +12,7 @@ section img{
     width: 100%;
     object-fit: cover;
     overflow: hidden;
+    height: 100%;
 }
 main{
     display: flex;
@@ -23,7 +24,8 @@ main{
 .ul-sector{
     display: flex;
     overflow: auto;
-   
+    height: 80vh;
+    overflow-y: scroll;
     padding: 2rem;
     gap: 1rem;
 }
