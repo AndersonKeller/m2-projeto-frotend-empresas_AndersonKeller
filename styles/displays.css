@@ -1,0 +1,21 @@
+@media (min-width: 768px) {
+    .section-bg{
+        display: flex;
+    }
+    .show-menu{
+        display: none;
+    }
+    .ul-sector{
+        flex-direction: column;
+    }
+    section{
+        width: 50%;
+    }
+    .nav-btns{
+        display: flex;
+        width: max-content;
+    }
+    .li-sector{
+        gap: 1rem;
+    }
+}
