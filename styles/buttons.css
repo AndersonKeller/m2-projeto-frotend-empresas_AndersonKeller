@@ -9,6 +9,6 @@ button:hover{
     color: var(--fix-white);
     background-color: var(--color-brand100);
 }
-.btn-form, .btn-register{
+.btn-form, .btn-register, .btn-return{
     width: 100%;
 }
