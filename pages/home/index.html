@@ -5,7 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles/globalStyles.css">
+    <link rel="stylesheet" href="../../styles/buttons.css">
+    <link rel="stylesheet" href="../../styles/texts.css">
+    <link rel="stylesheet" href="../../styles/header.css">
+    
     <link rel="stylesheet" href="../home/index.css">
+    <link rel="stylesheet" href="../../styles/displays.css">
     <title>Document</title>
 </head>
 <body>
@@ -15,9 +20,13 @@
                 <img src="../../assets/imgs/logo.png" alt="logo">
             <h1 class="logo-title">Kenzie Empresas</h1>
             </div>
+            <div class="show-menu">
+
+            </div>
+        
             <div class="nav-btns">
-                <button class="btn-login">Login</button>
-                <button class="btn-refiter">Cadastro</button>
+                <button class="btn-login text-btn">Login</button>
+                <button class="btn-refiter text-btn">Cadastro</button>
             </div>
         </nav>
     </header>
@@ -26,22 +35,32 @@
             <img src="../../assets/imgs/RegisterBg.png" alt="">
         </section>
         <section class="section-department">
-            <h2 class="title-section">Selecionar setor</h2>
-            <ul class="ul-esector">
+            
+            <select class="title-sector" name="title-sector" id="title-sector">
+                <option value="">Setor 1</option>
+                <option value="">Setor 2</option>
+            </select>
+            <ul class="ul-sector">
                 <li class="li-sector">
                     <h3 class="name-company">Empresa Name</h3>
-                    <p class="time-p">10 horas</p>
+                    <div class="div-infos">
+                        <p class="time-p">10 horas</p>
                     <span class="span-sector">Setor</span>
+                    </div>
                 </li>
                 <li class="li-sector">
                     <h3 class="name-company">Empresa Name</h3>
-                    <p class="time-p">10 horas</p>
+                    <div class="div-infos">
+                        <p class="time-p">10 horas</p>
                     <span class="span-sector">Setor</span>
+                    </div>
                 </li>
                 <li class="li-sector">
                     <h3 class="name-company">Empresa Name</h3>
-                    <p class="time-p">10 horas</p>
+                    <div class="div-infos">
+                        <p class="time-p">10 horas</p>
                     <span class="span-sector">Setor</span>
+                    </div>
                 </li>
             </ul>
         </section>

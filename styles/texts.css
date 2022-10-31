@@ -1,0 +1,5 @@
+.text-btn{
+    font-weight: 700;
+    font-size: var(--font-btn);
+    line-height: 1.45rem;
+}
