@@ -29,7 +29,7 @@
         
             <div class="nav-btns">
                 <button class="btn-login text-btn">Login</button>
-                <button class="btn-refiter text-btn">Cadastro</button>
+                <button onclick="window.location.href='../register/index.html'" class="btn-refiter text-btn">Cadastro</button>
             </div>
         </nav>
     </header>
@@ -37,14 +37,14 @@
         <h2 class="title-main">Login</h2>
         <p class="p-content">Preencha os campos para realizar login</p>
         <form>
-            <input type="email" placeholder="Seu e-mail" name="email" id="email" class="input-email">
-            <input type="password" placeholder="Sua senha" name="password" id="password">
+            <input type="email" placeholder="Seu e-mail" name="email" id="email" class="input-email" required>
+            <input type="password" placeholder="Sua senha" name="password" id="password" required>
             <button type="submit" class="btn-form text-btn">Login</button>
 
         </form>
         <div class="register-div">
             <p>ou</p>
-        <button class="btn-register text-btn">Cadastre-se</button>
+        <button onclick="window.location.href='../register/index.html'" class="btn-register text-btn">Cadastre-se</button>
         </div>
     </main>
     <script type="module" src="../login/index.js"></script>

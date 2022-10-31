@@ -1,4 +1,7 @@
 //import { showMenu } from "../home/index.js";
+
+import { loginApi } from "../../scripts/requests.js";
+
 showMenu()
 function showMenu(){
     const showMenu = document.querySelector(".show-menu");
@@ -9,3 +12,23 @@ function showMenu(){
         showMenu.classList.toggle("close-menu");
     })
 }
+
+function formLogin(){
+    let user = {}
+    const form = document.querySelector("form");
+    console.log(form.elements)
+    const list = [...form.elements]
+    form.addEventListener("submit",async (e)=>{
+        e.preventDefault()
+        list.forEach((element)=>{
+           if(element.tagName == "INPUT" && element.value != ""){
+            user[element.name] = element.value
+           }
+        })
+        
+        const resp = await loginApi(user)
+        console.log(resp)
+    })
+}
+formLogin()
+
