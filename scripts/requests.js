@@ -14,3 +14,9 @@ export async function getAllCompany(){
 
     return dataJson
 }
+export async function getCompanyBySector(sector){
+    const data = await fetch(`${baseUrl}companies/${sector}`);
+    const dataJson = await data.json()
+
+    return dataJson;
+}
