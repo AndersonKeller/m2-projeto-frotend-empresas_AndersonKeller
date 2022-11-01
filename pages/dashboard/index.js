@@ -9,12 +9,5 @@ function logout(){
 }
 logout()
 
-async function verifyUser(){
-    const user = await getLocalStorageToken()
-    console.log(user)
-    const resp = await verifyAdmin(user.token);
-    console.log(resp)
-    return resp;
-}
 
-await verifyUser()
+

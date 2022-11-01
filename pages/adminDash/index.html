@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/globalStyles.css">
+    <link rel="stylesheet" href="../../styles/buttons.css">
+    <link rel="stylesheet" href="../../styles/texts.css">
+    <link rel="stylesheet" href="../../styles/header.css">
+    <link rel="stylesheet" href="../../styles/inputs.css">
+    <link rel="stylesheet" href="../../styles/select.css">
+    <link rel="stylesheet" href="../adminDash/index.css">
+    <link rel="stylesheet" href="../../styles/displays.css">
+    <title>Admin Dash</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../assets/imgs/logo.png" alt="logo">
+            <h1 class="logo-title">Kenzie Empresas</h1>
+            </div>
+            <div class="show-menu">
+
+            </div>
+        
+            <div class="nav-btns">
+                <button onclick="window.location.href='../home/index.html'"id="btn-logout" class="btn-login text-btn">Logout</button>
+                
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="section-sector">
+            <h2 class="title-department">Departamentos</h2>
+            <select class="select-company" name="select-company" id="select-company">
+                <option value="">Selecionar empresa</option>
+            </select>
+            <button class="btn-create text-btn">+ Criar</button>
+            <ul class="ul-sector-dash">
+                <li class="li-sector-dash">
+                    <h3 class="company-name">department Name</h3>
+                    <p class="sector-description">sector description</p>
+                    <p class="company-name">company name</p>
+                    <div class="div-btns">
+                        <button class="btn-view"></button>
+                        <button class="btn-edit"></button>
+                        <button class="btn-remove-dash"></button>
+                    </div>
+                </li>
+                <li class="li-sector-dash">
+                    <h3 class="company-name">department Name</h3>
+                    <p class="sector-description">sector description</p>
+                    <p class="company-name">company name</p>
+                    <div class="div-btns">
+                        <button class="btn-view"></button>
+                        <button class="btn-edit"></button>
+                        <button class="btn-remove-dash"></button>
+                    </div>
+                </li>
+                <li class="li-sector-dash">
+                    <h3 class="company-name">department Name</h3>
+                    <p class="sector-description">sector description</p>
+                    <p class="company-name">company name</p>
+                    <div class="div-btns">
+                        <button class="btn-view"></button>
+                        <button class="btn-edit"></button>
+                        <button class="btn-remove-dash"></button>
+                    </div>
+                </li>
+                <li class="li-sector-dash">
+                    <h3 class="company-name">department Name</h3>
+                    <p class="sector-description">sector description</p>
+                    <p class="company-name">company name</p>
+                    <div class="div-btns">
+                        <button class="btn-view"></button>
+                        <button class="btn-edit"></button>
+                        <button class="btn-remove-dash"></button>
+                    </div>
+                </li>
+                <li class="li-sector-dash">
+                    <h3 class="company-name">department Name</h3>
+                    <p class="sector-description">sector description</p>
+                    <p class="company-name">company name</p>
+                    <div class="div-btns">
+                        <button class="btn-view"></button>
+                        <button class="btn-edit"></button>
+                        <button class="btn-remove-dash"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="section-users">
+            <h2 class="users-title">Usuários cadastrados</h2>
+            <ul class="ul-users-dash">
+                <li class="li-user-dash">
+                    <h3 class="user-name">User Name</h3>
+                    <p class="user-level">Pleno</p>
+                    <p class="user-company">Company Name</p>
+                    <div class="div-btns">
+                        <button class="btn-edit-user"></button>
+                        <button class="btn-remove-dash"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <script type="module" src="../adminDash/index.js"></script>
+</body>
+</html>
