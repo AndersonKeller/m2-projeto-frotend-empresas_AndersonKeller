@@ -93,9 +93,25 @@ export async function verifyAdmin(userToken){
 }
 export async function verifyUser(){
     const user = await getLocalStorageToken()
-    console.log(user)
+   
     const resp = await verifyAdmin(user.token);
-    console.log(resp)
+   
     return resp;
 }
+export async function getSectorsByCompany(companyId){
+    
+    const userToken = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}departments/${companyId}`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userToken.token}`
+        }
+    }) ;
+    
+    const dataJson = await data.json();
+   
 
+    return dataJson;
+
+}
