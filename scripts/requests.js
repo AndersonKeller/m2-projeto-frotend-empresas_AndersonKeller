@@ -21,7 +21,7 @@ export async function getCompanyBySector(sector){
     return dataJson;
 }
 export async function loginApi(user){
-     console.log(user)
+     
     const data = await fetch(`${baseUrl}auth/login`,
         {
             method: "POST",
@@ -36,4 +36,27 @@ export async function loginApi(user){
 
     
     return dataJson;
+}
+export async function registerUser(user){
+    const data = await fetch(`${baseUrl}auth/register`,{
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    });
+    if(data.ok){
+        const dataJson = await data.json();
+         console.log(dataJson);
+        
+        setTimeout(()=>{
+            window.location.replace("../login/index.html")
+        },2000)
+        return dataJson;    
+    }
+    else{
+        console.log(data.statusText)
+    }
+    
+    
 }
