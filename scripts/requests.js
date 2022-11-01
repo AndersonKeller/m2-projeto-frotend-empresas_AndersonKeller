@@ -110,7 +110,7 @@ export async function getSectorsByCompany(companyId){
     }) ;
     
     const dataJson = await data.json();
-   
+   console.log(dataJson)
 
     return dataJson;
 

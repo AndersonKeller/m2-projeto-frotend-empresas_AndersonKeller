@@ -16,29 +16,26 @@ async function listOptionCompanies(){
 async function eventSelectCompanie(){
     await listOptionCompanies()
     const select =  document.querySelectorAll(".select-company");
-    let id = ""
-   
-        select.forEach(async (option)=>{
-            option.addEventListener("click", async ()=>{
-                
-               const company = await getSectorsByCompany(option.value)
-               
-               company.forEach((companie)=>{
-                 id = companie.companies.uuid
-               })
-                await renderUlCompanies(id)
-            })
+    
+    select.forEach(async (option)=>{
+        option.addEventListener("click",async ()=>{
+            console.log("oi")
+           const res = await renderUlCompanies(option.value);
+           
         })
+    })
+        
     
 }
 eventSelectCompanie();
 
 async function renderUlCompanies(companyId){
+    await listOptionCompanies()
     const company = await getSectorsByCompany(companyId);
     const ul = document.querySelector(".ul-sector-dash");
     console.log(company)
     ul.innerHTML = ""
-    company.forEach((emp)=>{
+    company.forEach(async (emp)=>{
         console.log(emp)
         console.log(emp.companies.name)
         const li =document.createElement("li");
@@ -68,3 +65,10 @@ async function renderUlCompanies(companyId){
     
 
 }
+function logout(){
+    const btnLogout = document.querySelector("#btn-logout")
+    btnLogout.addEventListener("click",()=>{
+        localStorage.removeItem("userToken")
+    })
+}
+logout()
