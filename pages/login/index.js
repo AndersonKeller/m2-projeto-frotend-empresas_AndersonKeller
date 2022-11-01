@@ -1,6 +1,7 @@
 //import { showMenu } from "../home/index.js";
 
-import { loginApi } from "../../scripts/requests.js";
+import { getLocalStorageToken } from "../../scripts/localStorage.js";
+import { getUserLogged, loginApi } from "../../scripts/requests.js";
 
 showMenu()
 function showMenu(){
@@ -13,7 +14,7 @@ function showMenu(){
     })
 }
 
-function formLogin(){
+async function formLogin(){
     let user = {}
     const form = document.querySelector("form");
     console.log(form.elements)
@@ -27,8 +28,14 @@ function formLogin(){
         })
         
         const resp = await loginApi(user)
-        console.log(resp)
+        const token = await getLocalStorageToken()
+        console.log(token)
+        const dataUser = await getUserLogged(token.token)
+        localStorage.setItem("dataUser",JSON.stringify(dataUser));
+        
+        
     })
+    
 }
 formLogin()
 

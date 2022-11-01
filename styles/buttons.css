@@ -27,13 +27,6 @@ button:hover{
     background-size: contain;
     border: none;
 }
-.btn-remove-dash{
-    background-image: url("../assets/imgs/trash.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: none;
-}
 .btn-edit-user{
     background-image: url("../assets/imgs/pinblue.png");
     background-position: center;
@@ -41,6 +34,15 @@ button:hover{
     background-size: contain;
     border: none;
 }
-.btn-view:hover, .btn-edit:hover, .btn-remove-dash:hover{
+.btn-remove-dash{
+    background-image: url("../assets/imgs/trash.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+
+
+.btn-view:hover, .btn-edit:hover, .btn-remove-dash:hover,.btn-edit-user:hover{
     background-color: transparent;
 }
