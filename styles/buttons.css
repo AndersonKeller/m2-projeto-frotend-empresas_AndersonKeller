@@ -4,6 +4,7 @@ button{
     padding: 1rem 2rem;
     background-color: var(--fix-white);
     width: max-content;
+    cursor: pointer;
 }
 button:hover{
     color: var(--fix-white);
@@ -11,4 +12,35 @@ button:hover{
 }
 .btn-form, .btn-register, .btn-return{
     width: 100%;
+}
+.btn-view{
+    background-image: url("../assets/imgs/eye.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+.btn-edit{
+    background-image: url("../assets/imgs/pinblack.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+.btn-remove-dash{
+    background-image: url("../assets/imgs/trash.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+.btn-edit-user{
+    background-image: url("../assets/imgs/pinblue.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+.btn-view:hover, .btn-edit:hover, .btn-remove-dash:hover{
+    background-color: transparent;
 }

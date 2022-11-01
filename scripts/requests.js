@@ -1,4 +1,4 @@
-
+import { getLocalStorageToken } from "./localStorage.js";
 
 const baseUrl = "http://localhost:6278/"
 
@@ -38,9 +38,17 @@ export async function loginApi(user){
         const dataJson = await data.json();
         localStorage.setItem("userToken",JSON.stringify(dataJson))
     
-        setTimeout(()=>{
-            window.location.replace("../dashboard/index.html")
-        },2000)
+        const isAdmin = await verifyUser();
+        console.log(isAdmin.is_admin)
+        if(isAdmin.is_admin == true){
+            setTimeout(()=>{
+                window.location.replace("../adminDash/index.html")
+            },1000)
+        }else{
+            setTimeout(()=>{
+                window.location.replace("../dashboard/index.html")
+            },1000)
+        }
         return dataJson;
     }else{
         console.log(data.statusText)
@@ -82,4 +90,11 @@ export async function verifyAdmin(userToken){
     
 
     return dataJson
+}
+export async function verifyUser(){
+    const user = await getLocalStorageToken()
+    console.log(user)
+    const resp = await verifyAdmin(user.token);
+    console.log(resp)
+    return resp;
 }
