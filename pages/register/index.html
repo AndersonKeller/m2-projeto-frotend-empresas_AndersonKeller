@@ -35,14 +35,15 @@
         <h2 class="title-main">Cadastre-se</h2>
        
         <form>
-            <input type="text" placeholder="Seu nome">
+            <input id="username" type="text" placeholder="Seu nome">
             <input type="email" placeholder="Seu e-mail" name="email" id="email" class="input-email">
             <input type="password" placeholder="Sua senha" name="password" id="password">
-            <select name="nivel-profissional" id="nivel-profissional">
+            <select name="nivel-profissional" id="professional_level">
                 <option value="">Nível profissional</option>
-                <option value="Junior">Junior</option>
-                <option value="Junior">Pleno</option>
-                <option value="Junior">Sênior</option>
+                <option value="estágio">Estágio</option>
+                <option value="júnior">Júnior</option>
+                <option value="pleno">Pleno</option>
+                <option value="sênior">Sênior</option>
             </select>
             <button type="submit" class="btn-form text-btn">Cadastre-se</button>
 
@@ -53,6 +54,6 @@
         </div>
     </main>
     
-    <script src="../register/index.js"></script>
+    <script type="module" src="../register/index.js"></script>
 </body>
 </html>
