@@ -78,7 +78,7 @@ async function eventGetBySector(){
 
    
 }
-console.log(eventGetBySector())
+eventGetBySector()
 
 function renderBySector(sector){
     const ul = document.querySelector(".ul-sector");

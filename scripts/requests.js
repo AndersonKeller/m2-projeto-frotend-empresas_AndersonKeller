@@ -1,3 +1,5 @@
+
+
 const baseUrl = "http://localhost:6278/"
 
 export async function getAllDepartments(){
@@ -32,10 +34,17 @@ export async function loginApi(user){
             body: JSON.stringify(user)
         }
     )
-    const dataJson = await data.json();
-
+    if(data.ok){
+        const dataJson = await data.json();
+        localStorage.setItem("userToken",JSON.stringify(dataJson))
     
-    return dataJson;
+        setTimeout(()=>{
+            window.location.replace("../dashboard/index.html")
+        },2000)
+        return dataJson;
+    }else{
+        console.log(data.statusText)
+    }
 }
 export async function registerUser(user){
     const data = await fetch(`${baseUrl}auth/register`,{
@@ -56,7 +65,21 @@ export async function registerUser(user){
     }
     else{
         console.log(data.statusText)
-    }
+    } 
+}
+
+export async function verifyAdmin(userToken){
     
-    
+    const data = await fetch(`${baseUrl}auth/validate_user`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userToken}`
+        }
+    });
+    const dataJson = await data.json();
+
+    console.log(dataJson)
+
+    return dataJson
 }
