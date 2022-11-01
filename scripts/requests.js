@@ -43,11 +43,11 @@ export async function loginApi(user){
         if(isAdmin.is_admin == true){
             setTimeout(()=>{
                 window.location.replace("../adminDash/index.html")
-            },1000)
+            },2000)
         }else{
             setTimeout(()=>{
                 window.location.replace("../dashboard/index.html")
-            },1000)
+            },2000)
         }
         return dataJson;
     }else{
@@ -114,4 +114,19 @@ export async function getSectorsByCompany(companyId){
 
     return dataJson;
 
+}
+
+export async function getUserLogged(token){
+   
+    const data = await fetch(`${baseUrl}users/profile`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const dataJson = await data.json();
+    console.log(dataJson)
+
+    return dataJson;
 }

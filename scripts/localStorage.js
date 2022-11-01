@@ -4,3 +4,8 @@ export async function getLocalStorageToken(){
    
     return userToken
 }
+export async function getLocalStorageUserData(){
+    const userData = await JSON.parse(localStorage.getItem("dataUser"));
+
+    return userData;
+}
