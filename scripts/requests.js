@@ -79,7 +79,7 @@ export async function verifyAdmin(userToken){
     });
     const dataJson = await data.json();
 
-    console.log(dataJson)
+    
 
     return dataJson
 }
