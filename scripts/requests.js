@@ -130,3 +130,41 @@ export async function getUserLogged(token){
 
     return dataJson;
 }
+const user ={
+    
+        user_uuid: "cbafb1ca-9cdc-49e3-8eac-f57fee43f6db",
+        department_uuid: "fc98f190-358d-43d7-91cc-dbab8600586d"
+      
+}
+
+export async function hireEmployee(user){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}departments/hire/`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(user)
+    })
+    const dataJson = await data.json()
+
+    console.log(dataJson)
+    return dataJson
+}
+//hireEmployee(user)
+
+export async function getCoworkers(){
+    const tokenUser = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}users/departments/coworkers`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${tokenUser.token}`
+        }
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
+}

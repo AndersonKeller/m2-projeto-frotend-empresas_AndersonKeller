@@ -1,5 +1,5 @@
 import { getLocalStorageToken, getLocalStorageUserData } from "../../scripts/localStorage.js";
-import { verifyAdmin } from "../../scripts/requests.js";
+import { getAllCompany, getCoworkers, verifyAdmin } from "../../scripts/requests.js";
 
 function logout(){
     const btnLogout = document.querySelector("#btn-logout")
@@ -44,6 +44,11 @@ renderSectionUser()
 async function renderCoWorks(){
     const ul  = document.querySelector(".ul-coworks")
     const user = await getLocalStorageUserData();
+    const cowork = await getCoworkers();
+    
+    const mapUsers = cowork.map((e)=>{
+         return e.users 
+     })
     console.log(user)
     if(user.department_uuid == null ){
         const li = document.createElement("li");
@@ -52,9 +57,35 @@ async function renderCoWorks(){
         li.innerText = "Você ainda não foi contratado"
         ul.appendChild(li)
      }else{
+        const main = document.querySelector("main");
+        const divWork = document.createElement("div");
+        divWork.classList.add("div-user-work");
+        const h2CompanyName = document.createElement("h2");
+
+
+
+        console.log(mapUsers)
+        mapUsers.forEach((userCowork)=>{
+            userCowork.forEach((e)=>{
+                const li = document.createElement("li");
+                li.classList.add("li-default");
+                const h2name = document.createElement("h2");
+                h2name.classList.add("name-cowork");
+                h2name.innerText= e.username;
+                const pLevel = document.createElement("p");
+                pLevel.classList.add("level");
+                pLevel.innerText = e.professional_level
+
+                li.append(h2name,pLevel)
+                ul.appendChild(li)
+            })
+            
+
+        })
         
      }
 }
+
 renderCoWorks()
 
 
