@@ -5,7 +5,9 @@ async function listOptionCompanies(){
     const companies = await getAllCompany();
     const select = document.querySelector("select");
    companies.forEach((company)=>{
-   
+    //console.log(company.sectors.uuid)
+    let id = company.sectors.uuid
+    
     select.insertAdjacentHTML("beforeend",`
     <option value="${company.uuid}">${company.name}</option>
     `)
@@ -19,7 +21,7 @@ async function eventSelectCompanie(){
     
     select.forEach(async (option)=>{
         option.addEventListener("click",async ()=>{
-            console.log("oi")
+           
            const res = await renderUlCompanies(option.value);
            
         })
@@ -30,6 +32,7 @@ async function eventSelectCompanie(){
 eventSelectCompanie();
 
 async function renderUlCompanies(companyId){
+    console.log(companyId)
     await listOptionCompanies()
     const company = await getSectorsByCompany(companyId);
     const ul = document.querySelector(".ul-sector-dash");
