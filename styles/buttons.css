@@ -43,6 +43,14 @@ button:hover{
 }
 
 
-.btn-view:hover, .btn-edit:hover, .btn-remove-dash:hover,.btn-edit-user:hover{
+.btn-view:hover,.btn-close-modal:hover, .btn-edit:hover, .btn-remove-dash:hover,.btn-edit-user:hover{
     background-color: transparent;
+    color: var(--color-gray100);
+}
+.btn-close-modal{
+    color: var(--color-gray100);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
 }
