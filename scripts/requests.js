@@ -174,3 +174,20 @@ export async function getCoworkers(){
     
     return dataJson
 }
+
+export async function getAllUsers(){
+
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}users`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json()
+
+    console.log(dataJson)
+    return dataJson
+
+}

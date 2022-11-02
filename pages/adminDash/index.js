@@ -1,4 +1,4 @@
-import { getAllCompany, getSectorsByCompany } from "../../scripts/requests.js";
+import { getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
 async function listOptionCompanies(){
     
@@ -75,3 +75,38 @@ function logout(){
     })
 }
 logout()
+
+async function renderAllUsers(){
+    const ul = document.querySelector(".ul-users-dash")
+    const users = await getAllUsers()
+    users.forEach((e)=>{
+        
+        const li = document.createElement("li");
+        li.classList.add("li-user-dash");
+        const h3UserName = document.createElement("h3");
+        h3UserName.classList.add("user-name");
+        h3UserName.innerText = e.username;
+
+        const pLevel = document.createElement("p");
+        pLevel.classList.add("user-level");
+        pLevel.innerText = e.professional_level
+        
+        const pCompanyName = document.createElement("p");
+        pCompanyName.classList.add("user-company");
+        pCompanyName.innerText = "Company Name"
+
+        const divBtns = document.createElement("div");
+        divBtns.classList.add("div-btns");
+        const btnEdit = document.createElement("button");
+        btnEdit.classList.add("btn-edit-user");
+        const btnRemove = document.createElement("button");
+        btnRemove.classList.add("btn-remove-dash");
+
+        divBtns.append(btnEdit,btnRemove)
+        li.append(h3UserName,pLevel,pCompanyName,divBtns);
+        ul.appendChild(li)
+    })
+    
+
+}
+renderAllUsers()
