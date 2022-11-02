@@ -39,7 +39,7 @@ export async function loginApi(user){
         localStorage.setItem("userToken",JSON.stringify(dataJson))
     
         const isAdmin = await verifyUser();
-        console.log(isAdmin.is_admin)
+        console.log(dataJson)
         if(isAdmin.is_admin == true){
             setTimeout(()=>{
                 window.location.replace("../adminDash/index.html")
@@ -48,6 +48,12 @@ export async function loginApi(user){
             setTimeout(()=>{
                 window.location.replace("../dashboard/index.html")
             },2000)
+            const token = await getLocalStorageToken()
+        
+            const dataUser = await getUserLogged(token.token);
+            console.log(dataUser)
+            localStorage.setItem("dataUser",JSON.stringify(dataUser));
+            
         }
         return dataJson;
     }else{
@@ -130,12 +136,12 @@ export async function getUserLogged(token){
 
     return dataJson;
 }
-const user ={
+// const user ={
     
-        user_uuid: "cbafb1ca-9cdc-49e3-8eac-f57fee43f6db",
-        department_uuid: "fc98f190-358d-43d7-91cc-dbab8600586d"
+//         user_uuid: "cbafb1ca-9cdc-49e3-8eac-f57fee43f6db",
+//         department_uuid: "fc98f190-358d-43d7-91cc-dbab8600586d"
       
-}
+// }
 
 export async function hireEmployee(user){
     const token = await getLocalStorageToken();

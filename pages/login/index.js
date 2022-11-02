@@ -28,10 +28,7 @@ async function formLogin(){
         })
         
         const resp = await loginApi(user)
-        const token = await getLocalStorageToken()
-        console.log(token)
-        const dataUser = await getUserLogged(token.token)
-        localStorage.setItem("dataUser",JSON.stringify(dataUser));
+        
         
         
     })
