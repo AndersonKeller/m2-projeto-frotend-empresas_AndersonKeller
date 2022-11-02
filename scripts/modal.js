@@ -19,3 +19,4 @@ export function createModal(){
 
     main.appendChild(modalWrapper)
 }
+

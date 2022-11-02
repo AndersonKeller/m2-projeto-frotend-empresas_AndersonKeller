@@ -25,3 +25,15 @@ export async function createForm(){
     })
     
 }
+
+export async function editDepartmentForm(){
+
+    const modal = document.querySelector(".modal");
+    modal.insertAdjacentHTML("afterbegin",`
+    <h2 class="modal-title">Editar departamento</h2>
+    <form>
+    <input class="input-preview" id="description" type="text" placeholder="Descrição do departamento">
+        <button type="submit" class="btn-form text-btn">Salvar alterações</button>
+    </form>
+    `)
+}

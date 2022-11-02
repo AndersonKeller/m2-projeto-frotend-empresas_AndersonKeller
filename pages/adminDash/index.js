@@ -1,4 +1,4 @@
-import { createForm } from "../../scripts/forms.js";
+import { createForm, editDepartmentForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
@@ -41,10 +41,11 @@ async function renderUlCompanies(companyId){
     console.log(company)
     ul.innerHTML = ""
     company.forEach(async (emp)=>{
-        console.log(emp)
+        console.log(emp.uuid)
         console.log(emp.companies.name)
         const li =document.createElement("li");
         li.classList.add("li-sector-dash");
+        li.id = emp.uuid;
         const h3Name = document.createElement("h3");
         h3Name.innerText = emp.name;
         const pDescription = document.createElement("p");
@@ -58,16 +59,20 @@ async function renderUlCompanies(companyId){
         divBtns.classList.add("div-btns");
         const btnView = document.createElement("button");
         btnView.classList.add("btn-view");
+        btnView.id = emp.uuid;
         const btnEdit = document.createElement("button");
-        btnEdit.classList.add("btn-edit")
+        btnEdit.classList.add("btn-edit");
+        btnEdit.id = emp.uuid;
         const btnTrash = document.createElement("button");
         btnTrash.classList.add("btn-remove-dash");
+        btnTrash.id = emp.uuid;
         divBtns.append(btnView,btnEdit,btnTrash);
 
         li.append(h3Name,pDescription,pCompany,divBtns);
         ul.appendChild(li)
+       
     })
-    
+    btnEditDepartment()
 
 }
 function logout(){
@@ -127,3 +132,15 @@ function btnCreateDepartment(){
     })
 }
 btnCreateDepartment()
+
+async function btnEditDepartment(){
+    //await eventSelectCompanie()
+    const btnEditDep = document.querySelectorAll(".btn-edit")
+    btnEditDep.forEach((btn)=>{
+        console.log(btn)
+        btn.addEventListener("click",async ()=>{
+            createModal();
+            await editDepartmentForm()
+        })
+    })
+}
