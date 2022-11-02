@@ -1,3 +1,5 @@
+import { createForm } from "../../scripts/forms.js";
+import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
 async function listOptionCompanies(){
@@ -110,3 +112,18 @@ async function renderAllUsers(){
 
 }
 renderAllUsers()
+
+function btnCreateDepartment(){
+    const btnCreate = document.querySelector(".btn-create");
+    btnCreate.addEventListener("click",async ()=>{
+        createModal()
+        await createForm();
+        const form = document.querySelector("form");
+        form.addEventListener("submit",(e)=>{
+
+            e.preventDefault()
+            
+        })
+    })
+}
+btnCreateDepartment()
