@@ -1,3 +1,4 @@
+import { createModal } from "./modal.js";
 import { getAllCompany } from "./requests.js";
 
 export async function createForm(){
@@ -78,5 +79,20 @@ export async function viewDepartmentForm(){
             <button class="btn-fired text-btn">Desligar</button>
         </li>
     </ul>
+    `)
+}
+export async function editUserForm(){
+    const modal = document.querySelector(".modal");
+    modal.insertAdjacentHTML("afterbegin",`
+    <h2 class="modal-title">Editar departamento</h2>
+    <form>
+    <select class="select-kind" name="select-kind" id="select-kind">
+        <option value="">Selecionar modalidade de trabalho</option>
+    </select>
+    <select class="select-level" name="select-level" id="select-level">
+        <option value="">Selecionar nível profissional</option>
+    </select>
+    <button type="submit" class="btn-form">Editar</button>
+   </form>
     `)
 }

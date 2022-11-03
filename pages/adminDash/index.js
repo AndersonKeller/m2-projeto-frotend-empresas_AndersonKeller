@@ -1,4 +1,4 @@
-import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm } from "../../scripts/forms.js";
+import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
@@ -116,7 +116,7 @@ async function renderAllUsers(){
         ul.appendChild(li)
     })
     
-
+    btnEditUser()
 }
 renderAllUsers()
 
@@ -161,6 +161,15 @@ async function btnViewDepartment(){
         btn.addEventListener("click",async ()=>{
             createModal();
             await viewDepartmentForm()
+        })
+    })
+}
+async function btnEditUser(){
+    const btnEditUser = document.querySelectorAll(".btn-edit-user");
+    btnEditUser.forEach((btn)=>{
+        btn.addEventListener("click",async ()=>{
+            createModal();
+            await editUserForm()
         })
     })
 }
