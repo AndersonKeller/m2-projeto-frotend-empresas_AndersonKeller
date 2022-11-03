@@ -54,3 +54,13 @@ button:hover{
     right: 1rem;
     border: none;
 }
+.btn-remove-green{
+    background-color: var(--color-green); 
+    color: var(--fix-white);
+    border: none;
+    width: 100%;
+}
+.btn-remove-green:hover{
+   color: var(--color-gray200) ;
+   background-color: var(--color-green); 
+}

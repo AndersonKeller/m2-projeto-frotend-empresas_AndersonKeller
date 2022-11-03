@@ -1,4 +1,4 @@
-import { createForm, editDepartmentForm } from "../../scripts/forms.js";
+import { createForm, editDepartmentForm, removeDepartementForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
@@ -72,7 +72,8 @@ async function renderUlCompanies(companyId){
         ul.appendChild(li)
        
     })
-    btnEditDepartment()
+    btnEditDepartment();
+    btnRemoveDepartment()
 
 }
 function logout(){
@@ -137,10 +138,19 @@ async function btnEditDepartment(){
     //await eventSelectCompanie()
     const btnEditDep = document.querySelectorAll(".btn-edit")
     btnEditDep.forEach((btn)=>{
-        console.log(btn)
+       
         btn.addEventListener("click",async ()=>{
             createModal();
             await editDepartmentForm()
+        })
+    })
+}
+async function btnRemoveDepartment(){
+    const btnRemove = document.querySelectorAll(".btn-remove-dash");
+    btnRemove.forEach((btn)=>{
+        btn.addEventListener("click",async ()=>{
+            createModal();
+            await removeDepartementForm()
         })
     })
 }
