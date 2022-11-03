@@ -34,15 +34,15 @@ async function eventSelectCompanie(){
 eventSelectCompanie();
 
 async function renderUlCompanies(companyId){
-    console.log(companyId)
+    
     await listOptionCompanies()
     const company = await getSectorsByCompany(companyId);
     const ul = document.querySelector(".ul-sector-dash");
-    console.log(company)
+   
     ul.innerHTML = ""
     company.forEach(async (emp)=>{
         
-        console.log(emp.companies.name)
+        
         const li =document.createElement("li");
         li.classList.add("li-sector-dash");
         li.id = emp.uuid;
@@ -90,7 +90,7 @@ async function renderAllUsers(){
     ul.innerHTML = ""
     const users = await getAllUsers();
     const companyWork = await getAllSectors();
-    console.log(companyWork)
+   
     
     users.forEach(async (e)=>{
         let findCompany = ""
@@ -236,7 +236,7 @@ async function btnViewDepartment(){
             createModal();
             
             const sectors = await getAllSectors();
-            console.log(btn.id)
+            
            
             const findSec = sectors.find((sec)=>{
                 return sec.uuid == btn.id

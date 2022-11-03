@@ -1,5 +1,5 @@
 
-import { getAllCompany, getAllDepartments } from "./requests.js";
+import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors } from "./requests.js";
 
 export async function createForm(){
     
@@ -47,7 +47,15 @@ export async function removeDepartementForm(){
 }
 
 export async function viewDepartmentForm(dep){
-    console.log(dep)
+   
+   const work = await getAllUsers();
+   work.forEach((w)=>{
+    //console.log(w.department_uuid)
+   });
+   const findWorks = work.filter((e)=>{
+    return e.department_uuid == dep.uuid
+   });
+   console.log(findWorks)
     const modal = document.querySelector(".modal");
     
     modal.insertAdjacentHTML("afterbegin",`
@@ -62,26 +70,57 @@ export async function viewDepartmentForm(dep){
     <button class="btn-hire text-btn btn-green">Contratar</button>
     </div>
     <ul class="ul-employees">
-        <li class="li-employee">
-            <h3 class="user-name">Username</h3>
-            <p class="user-level">Pleno</p>
-            <p class="user-company">Company name</p>
-            <button class="btn-fired text-btn">Desligar</button>
-        </li>
-        <li class="li-employee">
-            <h3 class="user-name">Username</h3>
-            <p class="user-level">Pleno</p>
-            <p class="user-company">Company name</p>
-            <button class="btn-fired text-btn">Desligar</button>
-        </li>
-        <li class="li-employee">
-            <h3 class="user-name">Username</h3>
-            <p class="user-level">Pleno</p>
-            <p class="user-company">Company name</p>
-            <button class="btn-fired text-btn">Desligar</button>
-        </li>
+        
     </ul>
-    `)
+    `);
+    const companyWork = await getAllSectors();
+   
+    
+    
+    const ul = document.querySelector(".ul-employees");
+        findWorks.forEach(async (work)=>{
+            //console.log(work.department_uuid)
+            const findCompany = await companyWork.find((name)=>{
+                return work.department_uuid == name.uuid
+            });
+            console.log(findCompany.companies.name)
+
+            const li = document.createElement("li");
+            li.classList.add("li-employee");
+            const h3name = document.createElement("h3");
+            h3name.classList.add("user-name");
+            h3name.innerText = work.username;
+            const pLevel =document.createElement("p");
+            pLevel.classList.add("user-level");
+            pLevel.innerText = work.professional_level;
+            const pCompany = document.createElement("p");
+            pCompany.innerText = findCompany.companies.name;
+            const btnFired = document.createElement("button");
+            btnFired.classList.add("btn-fired");
+            btnFired.classList.add("text-btn");
+            btnFired.innerText="Desligar";
+
+            li.append(h3name,pLevel,pCompany,btnFired);
+            ul.appendChild(li)
+        })
+    // <li class="li-employee">
+    //         <h3 class="user-name">Username</h3>
+    //         <p class="user-level">Pleno</p>
+    //         <p class="user-company">Company name</p>
+    //         <button class="btn-fired text-btn">Desligar</button>
+    //     </li>
+    //     <li class="li-employee">
+    //         <h3 class="user-name">Username</h3>
+    //         <p class="user-level">Pleno</p>
+    //         <p class="user-company">Company name</p>
+    //         <button class="btn-fired text-btn">Desligar</button>
+    //     </li>
+    //     <li class="li-employee">
+    //         <h3 class="user-name">Username</h3>
+    //         <p class="user-level">Pleno</p>
+    //         <p class="user-company">Company name</p>
+    //         <button class="btn-fired text-btn">Desligar</button>
+    //     </li>
 }
 export async function editUserForm(){
     const modal = document.querySelector(".modal");
