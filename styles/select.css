@@ -8,3 +8,6 @@ select{
     border-radius: 2rem;
     padding: 0 1rem;
 }
+.select-user{
+    width: 50%;
+}

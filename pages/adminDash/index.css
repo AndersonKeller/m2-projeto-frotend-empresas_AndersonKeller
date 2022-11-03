@@ -39,3 +39,9 @@ li{
 .users-title{
     margin: 0 auto;
 }
+.ul-employees{
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    height: max-content;
+    overflow-y: hidden;
+}

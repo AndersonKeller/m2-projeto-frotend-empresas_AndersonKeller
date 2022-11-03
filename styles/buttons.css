@@ -54,13 +54,24 @@ button:hover{
     right: 1rem;
     border: none;
 }
-.btn-remove-green{
+.btn-green{
     background-color: var(--color-green); 
     color: var(--fix-white);
     border: none;
     width: 100%;
 }
-.btn-remove-green:hover{
+.btn-green:hover{
    color: var(--color-gray200) ;
    background-color: var(--color-green); 
+}
+.btn-hire{
+    width: max-content;
+}
+.btn-fired{
+    color: var(--color-red);
+    border: 1px solid var(--color-red);
+}
+.btn-fired:hover{
+    background-color: var(--color-red);
+    color: var(--fix-white);
 }
