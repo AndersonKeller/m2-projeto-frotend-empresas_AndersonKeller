@@ -272,3 +272,17 @@ export async function deleteUser(id){
     });
     return data
 }
+export async function getAllNotWorks(){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}admin/out_of_work`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
+}

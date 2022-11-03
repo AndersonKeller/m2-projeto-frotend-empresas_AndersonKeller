@@ -1,5 +1,5 @@
 
-import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors } from "./requests.js";
+import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors, getAllNotWorks } from "./requests.js";
 
 export async function createForm(){
     
@@ -49,15 +49,10 @@ export async function removeDepartementForm(){
 export async function viewDepartmentForm(dep){
    
    const work = await getAllUsers();
-   work.forEach((w)=>{
-    //console.log(w.department_uuid)
-   });
    const findWorks = work.filter((e)=>{
     return e.department_uuid == dep.uuid
    });
-   console.log(findWorks)
     const modal = document.querySelector(".modal");
-    
     modal.insertAdjacentHTML("afterbegin",`
     <h2 class="modal-title-view">${dep.name}</h2>
     <div class="div-header-modal">
@@ -73,10 +68,8 @@ export async function viewDepartmentForm(dep){
         
     </ul>
     `);
-    const companyWork = await getAllSectors();
-   
     
-    
+    const companyWork = await getAllSectors(); 
     const ul = document.querySelector(".ul-employees");
         findWorks.forEach(async (work)=>{
             //console.log(work.department_uuid)
@@ -102,26 +95,18 @@ export async function viewDepartmentForm(dep){
 
             li.append(h3name,pLevel,pCompany,btnFired);
             ul.appendChild(li)
-        })
-    // <li class="li-employee">
-    //         <h3 class="user-name">Username</h3>
-    //         <p class="user-level">Pleno</p>
-    //         <p class="user-company">Company name</p>
-    //         <button class="btn-fired text-btn">Desligar</button>
-    //     </li>
-    //     <li class="li-employee">
-    //         <h3 class="user-name">Username</h3>
-    //         <p class="user-level">Pleno</p>
-    //         <p class="user-company">Company name</p>
-    //         <button class="btn-fired text-btn">Desligar</button>
-    //     </li>
-    //     <li class="li-employee">
-    //         <h3 class="user-name">Username</h3>
-    //         <p class="user-level">Pleno</p>
-    //         <p class="user-company">Company name</p>
-    //         <button class="btn-fired text-btn">Desligar</button>
-    //     </li>
+        });
+        const notWork = await getAllNotWorks();
+        console.log(notWork)
+        const selectUser = document.querySelector(".select-user");
+        notWork.forEach((user)=>{
+            selectUser.insertAdjacentHTML("beforeend",`
+            <option value="${user.uuid}">${user.username}</option>
+            `)
+        });
+   
 }
+
 export async function editUserForm(){
     const modal = document.querySelector(".modal");
     
