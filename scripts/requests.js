@@ -9,6 +9,20 @@ export async function getAllDepartments(){
     
     return dataJson;
 }
+export async function getAllSectors(){
+    const token =await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}departments`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json();
+
+    
+    return dataJson;
+}
 
 export async function getAllCompany(){
     const data = await fetch(`${baseUrl}companies`);
@@ -136,12 +150,7 @@ export async function getUserLogged(token){
 
     return dataJson;
 }
-// const user ={
-    
-//         user_uuid: "cbafb1ca-9cdc-49e3-8eac-f57fee43f6db",
-//         department_uuid: "fc98f190-358d-43d7-91cc-dbab8600586d"
-      
-// }
+
 
 export async function hireEmployee(user){
     const token = await getLocalStorageToken();
@@ -158,7 +167,7 @@ export async function hireEmployee(user){
     
     return dataJson
 }
-//hireEmployee(user)
+
 
 export async function getCoworkers(){
     const tokenUser = await getLocalStorageToken()
@@ -218,9 +227,21 @@ export async function deleteDepartment(id){
             Authorization: `Bearer ${token.token}`
         }
     });
-    
-
-    
     return data
-    
+}
+
+export async function editDepartment(id,description){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}departments/${id}`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(description)
+    });
+    const dataJson = await data.json()
+
+    console.log(dataJson)
+    return dataJson
 }

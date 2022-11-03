@@ -1,6 +1,6 @@
 import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
-import { createDepartment, deleteDepartment, getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
+import { createDepartment, deleteDepartment, editDepartment, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
 async function listOptionCompanies(){
     
@@ -41,7 +41,7 @@ async function renderUlCompanies(companyId){
     console.log(company)
     ul.innerHTML = ""
     company.forEach(async (emp)=>{
-        console.log(emp.uuid)
+        
         console.log(emp.companies.name)
         const li =document.createElement("li");
         li.classList.add("li-sector-dash");
@@ -157,6 +157,31 @@ async function btnEditDepartment(){
         btn.addEventListener("click",async ()=>{
             createModal();
             await editDepartmentForm();
+           const allDeps = await getAllSectors();
+           const findId = allDeps.find((dep)=>{
+            return dep.uuid == btn.id
+           })
+           const inputPreview = document.querySelector(".input-preview");
+           inputPreview.value = findId.description;
+           
+           const btnForm = document.querySelector(".btn-form");
+        
+           
+           btnForm.addEventListener("click",async (e)=>{
+            e.preventDefault();
+                const descriptionInput = document.querySelector("#description")
+                const obj = {
+                description: descriptionInput.value
+                }
+                await editDepartment(findId.uuid,obj);
+                console.log("Editou");
+                const modal = document.querySelector(".modal-wrapper");
+            setTimeout(()=>{
+                modal.remove()
+                renderUlCompanies()
+            },1000)
+           })
+
             
         })
     })
