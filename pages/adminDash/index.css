@@ -45,3 +45,6 @@ li{
     height: max-content;
     overflow-y: hidden;
 }
+.description-dep{
+    width: 40%;
+}

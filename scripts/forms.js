@@ -1,5 +1,5 @@
 
-import { getAllCompany } from "./requests.js";
+import { getAllCompany, getAllDepartments } from "./requests.js";
 
 export async function createForm(){
     
@@ -46,16 +46,18 @@ export async function removeDepartementForm(){
     `)
 }
 
-export async function viewDepartmentForm(){
+export async function viewDepartmentForm(dep){
+    console.log(dep)
     const modal = document.querySelector(".modal");
+    
     modal.insertAdjacentHTML("afterbegin",`
-    <h2 class="modal-title-view">Nome do departamento</h2>
+    <h2 class="modal-title-view">${dep.name}</h2>
     <div class="div-header-modal">
-        <p class="description-dep">descrição do dep</p>
+        <p class="description-dep">${dep.description}</p>
         <select class="select-user" name="select-user" id="select-user">
         <option value="">Selecionar usuário</option>
     </select>
-    <p class="company-dep">empresa pertencente</p>
+    <p class="company-dep">${dep.companies.name}</p>
     
     <button class="btn-hire text-btn btn-green">Contratar</button>
     </div>
@@ -83,6 +85,8 @@ export async function viewDepartmentForm(){
 }
 export async function editUserForm(){
     const modal = document.querySelector(".modal");
+    
+   
     modal.insertAdjacentHTML("afterbegin",`
     <h2 class="modal-title">Editar departamento</h2>
     <form id="form-edit-user">

@@ -88,8 +88,19 @@ logout()
 async function renderAllUsers(){
     const ul = document.querySelector(".ul-users-dash");
     ul.innerHTML = ""
-    const users = await getAllUsers()
-    users.forEach((e)=>{
+    const users = await getAllUsers();
+    const companyWork = await getAllSectors();
+    console.log(companyWork)
+    
+    users.forEach(async (e)=>{
+        let findCompany = ""
+        if(e.department_uuid){
+             findCompany= await companyWork.find((comp)=>{
+                return comp.uuid == e.department_uuid
+            })
+        }
+       
+       // console.log(findCompany.companies.name)
         const li = document.createElement("li");
         li.classList.add("li-user-dash");
         const h3UserName = document.createElement("h3");
@@ -102,7 +113,12 @@ async function renderAllUsers(){
         
         const pCompanyName = document.createElement("p");
         pCompanyName.classList.add("user-company");
-        pCompanyName.innerText = "Company Name"
+        if(findCompany){
+            pCompanyName.innerText = findCompany.companies.name
+        }else{
+            pCompanyName.innerText=""
+        }
+        
 
         const divBtns = document.createElement("div");
         divBtns.classList.add("div-btns");
@@ -218,7 +234,14 @@ async function btnViewDepartment(){
     btnView.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
             createModal();
-            await viewDepartmentForm()
+            
+            const sectors = await getAllSectors();
+            console.log(btn.id)
+           
+            const findSec = sectors.find((sec)=>{
+                return sec.uuid == btn.id
+            })
+            await viewDepartmentForm(findSec);
         })
     })
 }
