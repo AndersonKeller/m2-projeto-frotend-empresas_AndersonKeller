@@ -1,5 +1,5 @@
 
-import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors, getAllNotWorks } from "./requests.js";
+import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors, getAllNotWorks, hireEmployee } from "./requests.js";
 
 export async function createForm(){
     
@@ -47,14 +47,14 @@ export async function removeDepartementForm(){
 }
 
 export async function viewDepartmentForm(dep){
-   
+   //console.log(dep.uuid)
    const work = await getAllUsers();
    const findWorks = work.filter((e)=>{
     return e.department_uuid == dep.uuid
    });
     const modal = document.querySelector(".modal");
     modal.insertAdjacentHTML("afterbegin",`
-    <h2 class="modal-title-view">${dep.name}</h2>
+    <h2 id="${dep.uuid}" class="modal-title-view">${dep.name}</h2>
     <div class="div-header-modal">
         <p class="description-dep">${dep.description}</p>
         <select class="select-user" name="select-user" id="select-user">
@@ -68,16 +68,39 @@ export async function viewDepartmentForm(dep){
         
     </ul>
     `);
-    
+    await renderWorkers(findWorks)
+    await hireEmployeeEvent()
+   
+}
+async function hireEmployeeEvent(){
+    const btnHire = document.querySelector(".btn-hire");
+    const depId = document.querySelector(".modal-title-view");
+   
+    btnHire.addEventListener("click",async ()=>{
+        const selectUser = document.querySelector("#select-user");
+        const user ={
+            user_uuid: selectUser.value,
+            department_uuid: depId.id
+        }
+       await hireEmployee(user);
+       //await renderWorkers(findWorks)
+       const modalWrapper = document.querySelector(".modal-wrapper");
+       setTimeout(()=>{
+        modalWrapper.remove()
+       },500)
+    })
+}
+
+async function renderWorkers(findWorks){
     const companyWork = await getAllSectors(); 
     const ul = document.querySelector(".ul-employees");
+    ul.innerHTML =""
         findWorks.forEach(async (work)=>{
             //console.log(work.department_uuid)
             const findCompany = await companyWork.find((name)=>{
                 return work.department_uuid == name.uuid
             });
-            console.log(findCompany.companies.name)
-
+            
             const li = document.createElement("li");
             li.classList.add("li-employee");
             const h3name = document.createElement("h3");
@@ -97,14 +120,13 @@ export async function viewDepartmentForm(dep){
             ul.appendChild(li)
         });
         const notWork = await getAllNotWorks();
-        console.log(notWork)
+        
         const selectUser = document.querySelector(".select-user");
         notWork.forEach((user)=>{
             selectUser.insertAdjacentHTML("beforeend",`
             <option value="${user.uuid}">${user.username}</option>
             `)
         });
-   
 }
 
 export async function editUserForm(){

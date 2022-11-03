@@ -163,7 +163,7 @@ export async function hireEmployee(user){
         body: JSON.stringify(user)
     })
     const dataJson = await data.json()
-
+    
     
     return dataJson
 }
