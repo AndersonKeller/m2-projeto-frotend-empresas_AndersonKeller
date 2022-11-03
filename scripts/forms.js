@@ -42,7 +42,7 @@ export async function removeDepartementForm(){
     const modal = document.querySelector(".modal");
     modal.insertAdjacentHTML("afterbegin",`
     <h2 class="modal-title">Realmente deseja deletar o Departamento NOME e demitir seus funcionários?</h2>
-    <button class="text-btn btn-green">Confirmar</button>
+    <button id="btn-remove-dep" class="text-btn btn-green">Confirmar</button>
     `)
 }
 

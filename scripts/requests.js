@@ -39,7 +39,7 @@ export async function loginApi(user){
         localStorage.setItem("userToken",JSON.stringify(dataJson))
     
         const isAdmin = await verifyUser();
-        console.log(dataJson)
+        
         if(isAdmin.is_admin == true){
             setTimeout(()=>{
                 window.location.replace("../adminDash/index.html")
@@ -51,7 +51,7 @@ export async function loginApi(user){
             const token = await getLocalStorageToken()
         
             const dataUser = await getUserLogged(token.token);
-            console.log(dataUser)
+           
             localStorage.setItem("dataUser",JSON.stringify(dataUser));
             
         }
@@ -70,7 +70,7 @@ export async function registerUser(user){
     });
     if(data.ok){
         const dataJson = await data.json();
-         console.log(dataJson);
+         
         
         setTimeout(()=>{
             window.location.replace("../login/index.html")
@@ -116,7 +116,7 @@ export async function getSectorsByCompany(companyId){
     }) ;
     
     const dataJson = await data.json();
-   console.log(dataJson)
+  
 
     return dataJson;
 
@@ -132,7 +132,7 @@ export async function getUserLogged(token){
         }
     });
     const dataJson = await data.json();
-    console.log(dataJson)
+    
 
     return dataJson;
 }
@@ -155,7 +155,7 @@ export async function hireEmployee(user){
     })
     const dataJson = await data.json()
 
-    console.log(dataJson)
+    
     return dataJson
 }
 //hireEmployee(user)
@@ -187,7 +187,7 @@ export async function getAllUsers(){
     });
     const dataJson = await data.json()
 
-    console.log(dataJson)
+    
     return dataJson
 
 }
@@ -207,4 +207,20 @@ export async function createDepartment(newDepartment){
     
     return dataJson
 
+}
+
+export async function deleteDepartment(id){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}departments/${id}`,{
+        method: "DELETE",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    
+
+    
+    return data
+    
 }
