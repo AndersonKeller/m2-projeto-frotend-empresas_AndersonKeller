@@ -1,4 +1,4 @@
-import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm } from "../../scripts/forms.js";
+import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
@@ -109,14 +109,15 @@ async function renderAllUsers(){
         const btnEdit = document.createElement("button");
         btnEdit.classList.add("btn-edit-user");
         const btnRemove = document.createElement("button");
-        btnRemove.classList.add("btn-remove-dash");
+        btnRemove.classList.add("btn-remove-user");
 
         divBtns.append(btnEdit,btnRemove)
         li.append(h3UserName,pLevel,pCompanyName,divBtns);
         ul.appendChild(li)
     })
     
-    btnEditUser()
+    btnEditUser();
+    btnRemoveUser()
 }
 renderAllUsers()
 
@@ -170,6 +171,15 @@ async function btnEditUser(){
         btn.addEventListener("click",async ()=>{
             createModal();
             await editUserForm()
+        })
+    })
+}
+async function btnRemoveUser(){
+    const btnRemoveUser = document.querySelectorAll(".btn-remove-user");
+    btnRemoveUser.forEach((btn)=>{
+        btn.addEventListener("click",async ()=>{
+            createModal();
+            await removeUserForm()
         })
     })
 }

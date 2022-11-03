@@ -34,7 +34,7 @@ button:hover{
     background-size: contain;
     border: none;
 }
-.btn-remove-dash{
+.btn-remove-dash,.btn-remove-user{
     background-image: url("../assets/imgs/trash.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +43,7 @@ button:hover{
 }
 
 
-.btn-view:hover,.btn-close-modal:hover, .btn-edit:hover, .btn-remove-dash:hover,.btn-edit-user:hover{
+.btn-view:hover,.btn-close-modal:hover, .btn-edit:hover,.btn-remove-user:hover, .btn-remove-dash:hover,.btn-edit-user:hover{
     background-color: transparent;
     color: var(--color-gray100);
 }

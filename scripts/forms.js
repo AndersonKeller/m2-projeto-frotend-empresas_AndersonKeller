@@ -96,3 +96,10 @@ export async function editUserForm(){
    </form>
     `)
 }
+export async function removeUserForm(){
+    const modal = document.querySelector(".modal");
+    modal.insertAdjacentHTML("afterbegin",`
+    <h2 class="modal-title">Realmente deseja remover o usuário NOME?</h2>
+    <button class="text-btn btn-green">Confirmar</button>
+    `)
+}
