@@ -1,5 +1,5 @@
 
-import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors, getAllNotWorks, hireEmployee } from "./requests.js";
+import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors, getAllNotWorks, hireEmployee, fireEmployee } from "./requests.js";
 
 export async function createForm(){
     
@@ -115,6 +115,11 @@ async function renderWorkers(findWorks){
             btnFired.classList.add("btn-fired");
             btnFired.classList.add("text-btn");
             btnFired.innerText="Desligar";
+            btnFired.id = work.uuid
+            btnFired.addEventListener("click",async ()=>{
+                await fireEmployeeEvent(btnFired.id)
+            })
+
 
             li.append(h3name,pLevel,pCompany,btnFired);
             ul.appendChild(li)
@@ -127,6 +132,14 @@ async function renderWorkers(findWorks){
             <option value="${user.uuid}">${user.username}</option>
             `)
         });
+}
+export async function fireEmployeeEvent(id){
+    await fireEmployee(id);
+    const modalWrapper = document.querySelector(".modal-wrapper");
+       setTimeout(()=>{
+        modalWrapper.remove()
+       },500)
+   
 }
 
 export async function editUserForm(){

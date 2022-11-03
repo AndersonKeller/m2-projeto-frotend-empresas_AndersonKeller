@@ -168,6 +168,20 @@ export async function hireEmployee(user){
     return dataJson
 }
 
+export async function fireEmployee(id){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}departments/dismiss/${id}`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json();
+
+    console.log(dataJson)
+    return dataJson
+}
 
 export async function getCoworkers(){
     const tokenUser = await getLocalStorageToken()
