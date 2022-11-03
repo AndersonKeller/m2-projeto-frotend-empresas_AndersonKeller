@@ -1,6 +1,6 @@
 import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
-import { createDepartment, deleteDepartment, editDepartment, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
+import { createDepartment, deleteDepartment, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
 async function listOptionCompanies(){
     
@@ -89,7 +89,6 @@ async function renderAllUsers(){
     const ul = document.querySelector(".ul-users-dash")
     const users = await getAllUsers()
     users.forEach((e)=>{
-        
         const li = document.createElement("li");
         li.classList.add("li-user-dash");
         const h3UserName = document.createElement("h3");
@@ -108,8 +107,10 @@ async function renderAllUsers(){
         divBtns.classList.add("div-btns");
         const btnEdit = document.createElement("button");
         btnEdit.classList.add("btn-edit-user");
+        btnEdit.id = e.uuid
         const btnRemove = document.createElement("button");
         btnRemove.classList.add("btn-remove-user");
+        btnRemove.id = e.uuid
 
         divBtns.append(btnEdit,btnRemove)
         li.append(h3UserName,pLevel,pCompanyName,divBtns);
@@ -225,9 +226,37 @@ async function btnEditUser(){
     btnEditUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
             createModal();
-            await editUserForm()
+            await editUserForm();
+            const info ={}
+            const form = document.querySelector("#form-edit-user");
+            const listForm = [...form.elements]
+            form.addEventListener("submit",async (e)=>{
+                e.preventDefault()
+                listForm.forEach((element)=>{
+                    if(element.value){
+                        info[element.id] = element.value
+                    }
+                    
+                })
+                console.log(btn.id)
+                console.log(info);
+               await editUserInfo(btn.id,info);
+               await renderAllUsers();
+               const modal = document.querySelector(".modal-wrapper");
+               
+               setTimeout(()=>{
+                   modal.remove();
+                   
+               },1000);
+               
+               //estágio, júnior, pleno, sênior
+               //home office, presencial, hibrido
+            })
+           
         })
+       
     })
+    
 }
 async function btnRemoveUser(){
     const btnRemoveUser = document.querySelectorAll(".btn-remove-user");

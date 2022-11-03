@@ -85,14 +85,21 @@ export async function editUserForm(){
     const modal = document.querySelector(".modal");
     modal.insertAdjacentHTML("afterbegin",`
     <h2 class="modal-title">Editar departamento</h2>
-    <form>
-    <select class="select-kind" name="select-kind" id="select-kind">
+    <form id="form-edit-user">
+    <select class="select-kind" name="select-kind" id="kind_of_work">
         <option value="">Selecionar modalidade de trabalho</option>
+        <option value="home office">HomeOffice</option>
+        <option value="presencial">Presencial</option>
+        <option value="hibrido">Híbrido</option>
     </select>
-    <select class="select-level" name="select-level" id="select-level">
+    <select class="select-level" name="select-level" id="professional_level">
         <option value="">Selecionar nível profissional</option>
+        <option value="estágio">Estágio</option>
+        <option value="júnior">Júnior</option>
+        <option value="pleno">Pleno</option>
+        <option value="sênior">Sênior</option>
     </select>
-    <button type="submit" class="btn-form">Editar</button>
+    <button type="submit" class="btn-form text-btn">Editar</button>
    </form>
     `)
 }

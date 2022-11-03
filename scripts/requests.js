@@ -242,6 +242,21 @@ export async function editDepartment(id,description){
     });
     const dataJson = await data.json()
 
+    
+    return dataJson
+}
+export async function editUserInfo(id,info){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}admin/update_user/${id}`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(info)
+    });
+    const dataJson = await data.json()
+
     console.log(dataJson)
     return dataJson
 }
