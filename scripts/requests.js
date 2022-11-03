@@ -191,3 +191,20 @@ export async function getAllUsers(){
     return dataJson
 
 }
+
+export async function createDepartment(newDepartment){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}departments`,{
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(newDepartment)
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
+
+}

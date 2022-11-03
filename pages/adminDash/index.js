@@ -1,6 +1,6 @@
 import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
-import { getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
+import { createDepartment, getAllCompany, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
 async function listOptionCompanies(){
     
@@ -121,16 +121,28 @@ async function renderAllUsers(){
 }
 renderAllUsers()
 
-function btnCreateDepartment(){
+async function btnCreateDepartment(){
     const btnCreate = document.querySelector(".btn-create");
     btnCreate.addEventListener("click",async ()=>{
         createModal()
         await createForm();
         const form = document.querySelector("form");
-        form.addEventListener("submit",(e)=>{
+        const list = [...form.elements];
+        const newDepartment = {}
 
+        form.addEventListener("submit",async (e)=>{
             e.preventDefault()
-            
+            list.forEach((element)=>{
+               if(element.value){
+                newDepartment[element.id]= element.value
+               }
+              
+            })
+            await createDepartment(newDepartment);
+            const modal = document.querySelector(".modal-wrapper");
+            setTimeout(()=>{
+                modal.remove()
+            },1000)
         })
     })
 }
@@ -183,3 +195,4 @@ async function btnRemoveUser(){
         })
     })
 }
+
