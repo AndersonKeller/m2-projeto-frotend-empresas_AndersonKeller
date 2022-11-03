@@ -260,3 +260,15 @@ export async function editUserInfo(id,info){
     console.log(dataJson)
     return dataJson
 }
+
+export async function deleteUser(id){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}admin/delete_user/${id}`,{
+        method: "DELETE",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    return data
+}

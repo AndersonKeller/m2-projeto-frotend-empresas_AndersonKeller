@@ -1,6 +1,6 @@
 import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
-import { createDepartment, deleteDepartment, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
+import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
 
 async function listOptionCompanies(){
     
@@ -86,7 +86,8 @@ function logout(){
 logout()
 
 async function renderAllUsers(){
-    const ul = document.querySelector(".ul-users-dash")
+    const ul = document.querySelector(".ul-users-dash");
+    ul.innerHTML = ""
     const users = await getAllUsers()
     users.forEach((e)=>{
         const li = document.createElement("li");
@@ -263,7 +264,22 @@ async function btnRemoveUser(){
     btnRemoveUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
             createModal();
-            await removeUserForm()
+            await removeUserForm();
+            const btnDel = document.querySelector(".btn-green");
+            
+            btnDel.addEventListener("click",async ()=>{
+                console.log(btn.id)
+                await deleteUser(btn.id);
+                console.log("removeu");
+               
+                const modal = document.querySelector(".modal-wrapper");
+               
+               setTimeout(()=>{
+                   modal.remove();
+                   
+               },1000);
+               renderAllUsers()
+            })
         })
     })
 }
