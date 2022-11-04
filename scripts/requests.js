@@ -179,7 +179,7 @@ export async function fireEmployee(id){
     });
     const dataJson = await data.json();
 
-    console.log(dataJson)
+  
     return dataJson
 }
 
@@ -241,7 +241,7 @@ export async function deleteDepartment(id){
             Authorization: `Bearer ${token.token}`
         }
     });
-    return data
+    return data;
 }
 
 export async function editDepartment(id,description){

@@ -20,7 +20,7 @@ async function listOptionCompanies(){
 async function eventSelectCompanie(){
     await listOptionCompanies()
     const select =  document.querySelectorAll(".select-company");
-    
+     
     select.forEach(async (option)=>{
         option.addEventListener("click",async ()=>{
            
@@ -32,6 +32,49 @@ async function eventSelectCompanie(){
     
 }
 eventSelectCompanie();
+
+async function renderAllDeps(){
+    const comp = await getAllSectors()
+    const ul = document.querySelector(".ul-sector-dash");
+    ul.innerHTML=""
+    comp.forEach(async(emp)=>{
+       
+        const li =document.createElement("li");
+        li.classList.add("li-sector-dash");
+        li.id = emp.uuid;
+        const h3Name = document.createElement("h3");
+        h3Name.innerText = emp.name;
+        const pDescription = document.createElement("p");
+        pDescription.classList.add("sector-description")
+        pDescription.innerText = emp.description;
+        const pCompany = document.createElement("p");
+        pCompany.classList.add("company-name");
+        pCompany.innerText = emp.companies.name;
+
+        const divBtns = document.createElement("div");
+        divBtns.classList.add("div-btns");
+        const btnView = document.createElement("button");
+        btnView.classList.add("btn-view");
+        btnView.id = emp.uuid;
+        const btnEdit = document.createElement("button");
+        btnEdit.classList.add("btn-edit");
+        btnEdit.id = emp.uuid;
+        const btnTrash = document.createElement("button");
+        btnTrash.classList.add("btn-remove-dash");
+        btnTrash.id = emp.uuid;
+        btnTrash.name =emp.name;
+        divBtns.append(btnView,btnEdit,btnTrash);
+
+        li.append(h3Name,pDescription,pCompany,divBtns);
+        ul.appendChild(li)
+       
+    })
+    btnViewDepartment()
+    btnEditDepartment();
+    btnRemoveDepartment();
+    
+}
+renderAllDeps()
 
 async function renderUlCompanies(companyId){
     
@@ -66,6 +109,7 @@ async function renderUlCompanies(companyId){
         const btnTrash = document.createElement("button");
         btnTrash.classList.add("btn-remove-dash");
         btnTrash.id = emp.uuid;
+        btnTrash.name = emp.name;
         divBtns.append(btnView,btnEdit,btnTrash);
 
         li.append(h3Name,pDescription,pCompany,divBtns);
@@ -124,7 +168,8 @@ async function renderAllUsers(){
         btnEdit.id = e.uuid
         const btnRemove = document.createElement("button");
         btnRemove.classList.add("btn-remove-user");
-        btnRemove.id = e.uuid
+        btnRemove.id = e.uuid;
+        btnRemove.name = e.username
 
         divBtns.append(btnEdit,btnRemove)
         li.append(h3UserName,pLevel,pCompanyName,divBtns);
@@ -157,7 +202,7 @@ async function btnCreateDepartment(){
             const modal = document.querySelector(".modal-wrapper");
             setTimeout(()=>{
                 modal.remove()
-                renderUlCompanies()
+                renderAllDeps()
             },1000)
         })
     })
@@ -165,7 +210,6 @@ async function btnCreateDepartment(){
 btnCreateDepartment()
 
 async function btnEditDepartment(){
-    //await eventSelectCompanie()
     const btnEditDep = document.querySelectorAll(".btn-edit")
     btnEditDep.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
@@ -187,11 +231,11 @@ async function btnEditDepartment(){
                 description: descriptionInput.value
                 }
                 await editDepartment(findId.uuid,obj);
-                console.log("Editou");
+                
                 const modal = document.querySelector(".modal-wrapper");
             setTimeout(()=>{
                 modal.remove()
-                renderUlCompanies()
+                renderAllDeps()
             },1000)
            })
 
@@ -203,19 +247,21 @@ async function btnRemoveDepartment(){
     btnRemove.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
             createModal();
-            await removeDepartementForm();
+            
+            await removeDepartementForm(btn.name);
             const btnRemove = document.querySelector(".btn-remove-dash");
             const idDep = btnRemove.id;
             
             const btnConfirm = document.querySelector("#btn-remove-dep");
              btnConfirm.addEventListener("click",async ()=>{
-                await deleteDepartment(idDep);
+                 await  deleteDepartment(idDep);
                 const modal = document.querySelector(".modal-wrapper");
+                
                 setTimeout(()=>{
                     modal.remove();
-                    renderUlCompanies()
+                    renderAllDeps();
                 },1000);
-               
+                
              })
         })
     })
@@ -227,8 +273,6 @@ async function btnViewDepartment(){
             createModal();
             
             const sectors = await getAllSectors();
-            
-           
             const findSec = sectors.find((sec)=>{
                 return sec.uuid == btn.id
             })
@@ -253,8 +297,7 @@ async function btnEditUser(){
                     }
                     
                 })
-                console.log(btn.id)
-                console.log(info);
+                
                await editUserInfo(btn.id,info);
                await renderAllUsers();
                const modal = document.querySelector(".modal-wrapper");
@@ -275,17 +318,19 @@ async function btnEditUser(){
 }
 async function btnRemoveUser(){
     const btnRemoveUser = document.querySelectorAll(".btn-remove-user");
+    
     btnRemoveUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
+            
             createModal();
-            await removeUserForm();
+            await removeUserForm(btn.name);
             const btnDel = document.querySelector(".btn-green");
             
             btnDel.addEventListener("click",async ()=>{
                
                 await deleteUser(btn.id);
                 const modal = document.querySelector(".modal-wrapper");
-               setTimeout(()=>{
+                setTimeout(()=>{
                    modal.remove();
                    
                },1000);

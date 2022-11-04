@@ -38,10 +38,10 @@ export async function editDepartmentForm(){
     </form>
     `)
 }
-export async function removeDepartementForm(){
+export async function removeDepartementForm(name){
     const modal = document.querySelector(".modal");
     modal.insertAdjacentHTML("afterbegin",`
-    <h2 class="modal-title">Realmente deseja deletar o Departamento NOME e demitir seus funcionários?</h2>
+    <h2 class="modal-title">Realmente deseja deletar o Departamento ${name} e demitir seus funcionários?</h2>
     <button id="btn-remove-dep" class="text-btn btn-green">Confirmar</button>
     `)
 }
@@ -166,10 +166,10 @@ export async function editUserForm(){
    </form>
     `)
 }
-export async function removeUserForm(){
+export async function removeUserForm(name){
     const modal = document.querySelector(".modal");
     modal.insertAdjacentHTML("afterbegin",`
-    <h2 class="modal-title">Realmente deseja remover o usuário NOME?</h2>
+    <h2 class="modal-title">Realmente deseja remover o usuário ${name}</h2>
     <button class="text-btn btn-green">Confirmar</button>
     `)
 }
