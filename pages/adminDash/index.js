@@ -129,7 +129,7 @@ function logout(){
 }
 logout()
 
-async function renderAllUsers(){
+export async function renderAllUsers(){
     const ul = document.querySelector(".ul-users-dash");
     ul.innerHTML = ""
     const users = await getAllUsers();
