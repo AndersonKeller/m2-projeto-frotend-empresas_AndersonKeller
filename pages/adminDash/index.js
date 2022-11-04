@@ -1,6 +1,16 @@
 import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
-import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
+import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany, verifyAdmin, verifyUser } from "../../scripts/requests.js";
+
+
+async function verifyTokenType(){
+    const resp = await verifyUser();
+    if(!resp.is_admin){
+        window.location.replace("../home/index.html")
+    }
+}
+verifyTokenType()
+
 
 async function listOptionCompanies(){
     

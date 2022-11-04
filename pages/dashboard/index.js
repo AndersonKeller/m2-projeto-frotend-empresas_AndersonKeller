@@ -1,7 +1,15 @@
 import { updateUserForm } from "../../scripts/forms.js";
 import { getLocalStorageToken, getLocalStorageUserData } from "../../scripts/localStorage.js";
 import { createModal } from "../../scripts/modal.js";
-import { getAllCompany, getAllSectors, getCoworkers, getDepLocalUser, updateUser, verifyAdmin } from "../../scripts/requests.js";
+import { getAllCompany, getAllSectors, getCoworkers, getDepLocalUser, updateUser, verifyUser } from "../../scripts/requests.js";
+
+async function verifyTokenType(){
+    const resp = await verifyUser();
+    if(resp.is_admin){
+        window.location.replace("../home/index.html")
+    }
+}
+verifyTokenType()
 
 function logout(){
     const btnLogout = document.querySelector("#btn-logout")
