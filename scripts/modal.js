@@ -1,4 +1,4 @@
-export function createModal(){
+export async function createModal(){
     const main = document.querySelector("main")
     const modalWrapper = document.createElement("div");
     modalWrapper.classList.add("modal-wrapper");

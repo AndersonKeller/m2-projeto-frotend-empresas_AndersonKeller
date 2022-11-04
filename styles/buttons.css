@@ -44,7 +44,7 @@ button:hover{
 
 
 .btn-view:hover,.btn-close-modal:hover, .btn-edit:hover,.btn-remove-user:hover, .btn-remove-dash:hover,.btn-edit-user:hover{
-    background-color: transparent;
+    background-color: var(--fix-white);
     color: var(--color-gray100);
 }
 .btn-close-modal{

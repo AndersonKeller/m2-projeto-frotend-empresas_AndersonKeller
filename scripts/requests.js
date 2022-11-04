@@ -9,6 +9,20 @@ export async function getAllDepartments(){
     
     return dataJson;
 }
+export async function getAllSectors(){
+    const token =await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}departments`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json();
+
+    
+    return dataJson;
+}
 
 export async function getAllCompany(){
     const data = await fetch(`${baseUrl}companies`);
@@ -39,7 +53,7 @@ export async function loginApi(user){
         localStorage.setItem("userToken",JSON.stringify(dataJson))
     
         const isAdmin = await verifyUser();
-        console.log(dataJson)
+        
         if(isAdmin.is_admin == true){
             setTimeout(()=>{
                 window.location.replace("../adminDash/index.html")
@@ -51,7 +65,7 @@ export async function loginApi(user){
             const token = await getLocalStorageToken()
         
             const dataUser = await getUserLogged(token.token);
-            console.log(dataUser)
+           
             localStorage.setItem("dataUser",JSON.stringify(dataUser));
             
         }
@@ -70,7 +84,7 @@ export async function registerUser(user){
     });
     if(data.ok){
         const dataJson = await data.json();
-         console.log(dataJson);
+         
         
         setTimeout(()=>{
             window.location.replace("../login/index.html")
@@ -116,7 +130,7 @@ export async function getSectorsByCompany(companyId){
     }) ;
     
     const dataJson = await data.json();
-   console.log(dataJson)
+  
 
     return dataJson;
 
@@ -132,16 +146,11 @@ export async function getUserLogged(token){
         }
     });
     const dataJson = await data.json();
-    console.log(dataJson)
+    
 
     return dataJson;
 }
-// const user ={
-    
-//         user_uuid: "cbafb1ca-9cdc-49e3-8eac-f57fee43f6db",
-//         department_uuid: "fc98f190-358d-43d7-91cc-dbab8600586d"
-      
-// }
+
 
 export async function hireEmployee(user){
     const token = await getLocalStorageToken();
@@ -154,11 +163,25 @@ export async function hireEmployee(user){
         body: JSON.stringify(user)
     })
     const dataJson = await data.json()
+    
+    
+    return dataJson
+}
+
+export async function fireEmployee(id){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}departments/dismiss/${id}`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json();
 
     console.log(dataJson)
     return dataJson
 }
-//hireEmployee(user)
 
 export async function getCoworkers(){
     const tokenUser = await getLocalStorageToken()
@@ -187,7 +210,130 @@ export async function getAllUsers(){
     });
     const dataJson = await data.json()
 
-    console.log(dataJson)
+    
     return dataJson
 
+}
+
+export async function createDepartment(newDepartment){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}departments`,{
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(newDepartment)
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
+
+}
+
+export async function deleteDepartment(id){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}departments/${id}`,{
+        method: "DELETE",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    return data
+}
+
+export async function editDepartment(id,description){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}departments/${id}`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(description)
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
+}
+export async function editUserInfo(id,info){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}admin/update_user/${id}`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(info)
+    });
+    const dataJson = await data.json()
+
+    console.log(dataJson)
+    return dataJson
+}
+
+export async function deleteUser(id){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}admin/delete_user/${id}`,{
+        method: "DELETE",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    return data
+}
+export async function getAllNotWorks(){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}admin/out_of_work`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
+}
+export async function updateUser(user){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}users`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(user)
+    });
+   
+    if(data.ok){
+        
+    const dataJson = await data.json();
+
+    
+    return dataJson
+    }else{
+        
+        console.log(data.statusText)
+        
+    }
+}
+export async function getDepLocalUser(){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}users/departments`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
 }
