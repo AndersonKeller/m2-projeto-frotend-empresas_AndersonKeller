@@ -203,7 +203,7 @@ async function btnCreateDepartment(){
             setTimeout(()=>{
                 modal.remove()
                 renderAllDeps()
-            },1000)
+            },3000)
         })
     })
 }
