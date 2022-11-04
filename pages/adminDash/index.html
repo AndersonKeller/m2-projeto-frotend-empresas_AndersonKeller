@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="../../styles/texts.css">
     <link rel="stylesheet" href="../../styles/header.css">
     <link rel="stylesheet" href="../../styles/inputs.css">
+    <link rel="stylesheet" href="../../styles/select.css">
     <link rel="stylesheet" href="../../styles/modal.css">
-    <link rel="stylesheet" href="../dashboard/index.css">
+    <link rel="stylesheet" href="../adminDash/index.css">
    
     <link rel="stylesheet" href="../../styles/displays.css">
-    <title>Kenzie empresas - dashboard</title>
+    <title>Kenzie empresas - Admin Dash</title>
 </head>
 <body>
     <header>
@@ -34,17 +35,25 @@
     </header>
   
     <main>
-        <section class="user-data">
-            
+        <section class="section-sector">
+            <h2 class="title-department">Departamentos</h2>
+            <select class="select-company" name="select-company" id="select-company">
+                <option value="">Selecionar empresa</option>
+            </select>
+            <button class="btn-create text-btn">+ Criar</button>
+            <ul class="ul-sector-dash">
+                
+                
+            </ul>
         </section>
-        <div class="div-user-work">
-            
-        </div>
-        <ul class="ul-coworks">
-           
-          
-        </ul>
+        <section class="section-users">
+            <h2 class="users-title">Usuários cadastrados</h2>
+            <ul class="ul-users-dash">
+               
+            </ul>
+        </section>
+        
     </main>
-    <script type="module" src="../dashboard/index.js"></script>
+    <script type="module" src="../adminDash/index.js"></script>
 </body>
 </html>

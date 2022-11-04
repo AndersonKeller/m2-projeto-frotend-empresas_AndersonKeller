@@ -1,0 +1,79 @@
+button{
+    color: var(--color-brand100);
+    border: 1px solid var(--color-brand100);
+    padding: 1rem 2rem;
+    background-color: var(--fix-white);
+    width: max-content;
+    cursor: pointer;
+}
+button:hover{
+    color: var(--fix-white);
+    background-color: var(--color-brand100);
+}
+.btn-form, .btn-register, .btn-return{
+    width: 100%;
+}
+.btn-view{
+    background-image: url("../assets/imgs/eye.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+.btn-edit{
+    background-image: url("../assets/imgs/pinblack.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+.btn-edit-user{
+    background-image: url("../assets/imgs/pinblue.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+.btn-remove-dash,.btn-remove-user{
+    background-image: url("../assets/imgs/trash.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+
+
+.btn-view:hover,.btn-close-modal:hover, .btn-edit:hover,.btn-remove-user:hover, .btn-remove-dash:hover,.btn-edit-user:hover{
+    background-color: var(--fix-white);
+    color: var(--color-gray100);
+}
+.btn-close-modal{
+    color: var(--color-gray100);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    width: 50px;
+    height: 50px;
+}
+.btn-green{
+    background-color: var(--color-green); 
+    color: var(--fix-white);
+    border: none;
+    width: 100%;
+}
+.btn-green:hover{
+   color: var(--color-gray200) ;
+   background-color: var(--color-green); 
+}
+.btn-hire{
+    width: max-content;
+}
+.btn-fired{
+    color: var(--color-red);
+    border: 1px solid var(--color-red);
+}
+.btn-fired:hover{
+    background-color: var(--color-red);
+    color: var(--fix-white);
+}

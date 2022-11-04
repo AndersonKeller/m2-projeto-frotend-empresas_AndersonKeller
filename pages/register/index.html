@@ -5,11 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles/globalStyles.css">
+    <link rel="stylesheet" href="../../styles/buttons.css">
+    <link rel="stylesheet" href="../../styles/texts.css">
+    <link rel="stylesheet" href="../../styles/header.css">
+    <link rel="stylesheet" href="../../styles/inputs.css">
+    <link rel="stylesheet" href="../../styles/select.css">
     <link rel="stylesheet" href="../register/index.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/displays.css">
+    <title>Kenzie empresas - register</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../assets/imgs/logo.png" alt="logo">
+            <h1 class="logo-title">Kenzie Empresas</h1>
+            </div>
+            <div class="show-menu">
+
+            </div>
+        
+            <div class="nav-btns">
+                <button onclick="window.location.href='../login/index.html'" class="btn-login text-btn">Login</button>
+                <button class="btn-refiter text-btn">Cadastro</button>
+            </div>
+        </nav>
+    </header>
+    <main class="main-container">
+        <h2 class="title-main">Cadastre-se</h2>
+       
+        <form>
+            <input id="username" type="text" placeholder="Seu nome">
+            <input type="email" placeholder="Seu e-mail" name="email" id="email" class="input-email">
+            <input type="password" placeholder="Sua senha" name="password" id="password">
+            <select name="nivel-profissional" id="professional_level">
+                <option value="">Nível profissional</option>
+                <option value="estágio">Estágio</option>
+                <option value="júnior">Júnior</option>
+                <option value="pleno">Pleno</option>
+                <option value="sênior">Sênior</option>
+            </select>
+            <button type="submit" class="btn-form text-btn">Cadastre-se</button>
+
+        </form>
+        <div class="register-div">
+            
+        <button onclick="window.location.href='../home/index.html'" class="btn-return text-btn">Retornar</button>
+        </div>
+    </main>
     
-    <script src="../register/index.js"></script>
+    <script type="module" src="../register/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+select{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding:  1rem;
+}
+.select-company{
+    width: max-content;
+    border-radius: 2rem;
+    padding: 0 1rem;
+}
+.select-user{
+    width: 50%;
+}

@@ -1,0 +1,10 @@
+.text-btn{
+    font-weight: 700;
+    font-size: var(--font-btn);
+    line-height: 1.45rem;
+}
+.text-not-work{
+    font-weight: 700;
+    font-size: 2.5rem;
+    
+}
