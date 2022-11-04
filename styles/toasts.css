@@ -1,0 +1,44 @@
+.toast-container{
+    width: auto;
+    height: auto;
+    padding: 1rem 2rem;
+    
+    border-radius: 1rem;
+    position: absolute;
+    right: -250px;
+    
+    
+    animation: toastAnimation 3s ease;
+}
+.sucess{
+    
+    background-color: var(--color-green);
+    animation: toastAnimation 3s ease;
+}
+.error{
+    
+    background-color: var(--color-red);
+    animation: toastAnimation 3s ease;
+}
+.toast-container h3{
+    color: var(--fix-white);
+    text-align: center;
+}
+@keyframes toastAnimation{
+    0%{
+        position: absolute;
+        right: 100px;
+    }
+    50%{
+        position: absolute;
+        right: 260px;
+    }
+    75%{
+        position: absolute;
+        right: 260px;
+    }
+    100%{
+        position: absolute;
+        right: -200px;
+    }
+}

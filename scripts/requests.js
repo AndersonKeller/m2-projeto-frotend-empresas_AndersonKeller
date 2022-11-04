@@ -1,4 +1,5 @@
 import { getLocalStorageToken } from "./localStorage.js";
+import { toastCreate } from "./toast.js";
 
 const baseUrl = "http://localhost:6278/"
 
@@ -51,17 +52,17 @@ export async function loginApi(user){
     if(data.ok){
         const dataJson = await data.json();
         localStorage.setItem("userToken",JSON.stringify(dataJson))
-    
+        await toastCreate("ok",data.statusText)
         const isAdmin = await verifyUser();
-        
+       
         if(isAdmin.is_admin == true){
             setTimeout(()=>{
                 window.location.replace("../adminDash/index.html")
-            },2000)
+            },3000)
         }else{
             setTimeout(()=>{
                 window.location.replace("../dashboard/index.html")
-            },2000)
+            },3000)
             const token = await getLocalStorageToken()
         
             const dataUser = await getUserLogged(token.token);
@@ -69,10 +70,14 @@ export async function loginApi(user){
             localStorage.setItem("dataUser",JSON.stringify(dataUser));
             
         }
+        
         return dataJson;
     }else{
-        console.log(data.statusText)
+        await toastCreate("error",data.statusText)
+        
+        
     }
+    
 }
 export async function registerUser(user){
     const data = await fetch(`${baseUrl}auth/register`,{
