@@ -1,5 +1,5 @@
 import { getLocalStorageToken } from "./localStorage.js";
-import { toastCreate } from "./toast.js";
+import { toastCreate, toastCreateModal } from "./toast.js";
 
 const baseUrl = "http://localhost:6278/"
 
@@ -231,10 +231,15 @@ export async function createDepartment(newDepartment){
         },
         body: JSON.stringify(newDepartment)
     });
-    const dataJson = await data.json()
+    if(data.ok){
+        await toastCreateModal("ok",data.statusText)
+        const dataJson = await data.json()
 
     
-    return dataJson
+        return dataJson
+    }else{
+        await toastCreateModal("error",data.statusText)
+    }
 
 }
 
