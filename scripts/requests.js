@@ -300,3 +300,40 @@ export async function getAllNotWorks(){
     
     return dataJson
 }
+export async function updateUser(user){
+    const token = await getLocalStorageToken();
+    const data = await fetch(`${baseUrl}users`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        },
+        body: JSON.stringify(user)
+    });
+   
+    if(data.ok){
+        
+    const dataJson = await data.json();
+
+    
+    return dataJson
+    }else{
+        
+        console.log(data.statusText)
+        
+    }
+}
+export async function getDepLocalUser(){
+    const token = await getLocalStorageToken()
+    const data = await fetch(`${baseUrl}users/departments`,{
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token.token}`
+        }
+    });
+    const dataJson = await data.json()
+
+    
+    return dataJson
+}

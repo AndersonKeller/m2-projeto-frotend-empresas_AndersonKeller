@@ -1,6 +1,6 @@
 
 import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors, getAllNotWorks, hireEmployee, fireEmployee } from "./requests.js";
-
+import { getLocalStorageUserData } from "./localStorage.js";
 export async function createForm(){
     
     const modal = document.querySelector(".modal");
@@ -171,5 +171,20 @@ export async function removeUserForm(){
     modal.insertAdjacentHTML("afterbegin",`
     <h2 class="modal-title">Realmente deseja remover o usuário NOME?</h2>
     <button class="text-btn btn-green">Confirmar</button>
+    `)
+}
+
+export async function updateUserForm(){
+    const userLocal = await getLocalStorageUserData();
+    console.log(userLocal)
+    const modal = document.querySelector(".modal");
+    modal.insertAdjacentHTML("afterbegin",`
+    <h2 class="modal-title">Editar Perfil</h2>
+    <form>
+    <input type="text" id="username" value="${userLocal.username}" placeholder="Seu nome">
+    <input type="email" id="email" value="${userLocal.email}" placeholder="Seu email">
+    <input required type="password" id="password" placeholder="Sua senha">
+    <button class="text-btn" type="submit">Editar perfil</button>
+   </form>
     `)
 }
