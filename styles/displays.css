@@ -7,6 +7,8 @@
     }
     .ul-sector{
         flex-direction: column;
+        max-height: 80vh;
+        
     }
     section{
         width: 50%;
@@ -17,5 +19,6 @@
     }
     .li-sector{
         gap: 1rem;
+       
     }
 }
