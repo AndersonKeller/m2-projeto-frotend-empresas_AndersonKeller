@@ -90,7 +90,6 @@ async function renderAllUsers(){
     ul.innerHTML = ""
     const users = await getAllUsers();
     const companyWork = await getAllSectors();
-   
     
     users.forEach(async (e)=>{
         let findCompany = ""
@@ -99,8 +98,6 @@ async function renderAllUsers(){
                 return comp.uuid == e.department_uuid
             })
         }
-       
-       // console.log(findCompany.companies.name)
         const li = document.createElement("li");
         li.classList.add("li-user-dash");
         const h3UserName = document.createElement("h3");
@@ -171,7 +168,6 @@ async function btnEditDepartment(){
     //await eventSelectCompanie()
     const btnEditDep = document.querySelectorAll(".btn-edit")
     btnEditDep.forEach((btn)=>{
-       
         btn.addEventListener("click",async ()=>{
             createModal();
             await editDepartmentForm();
@@ -184,7 +180,6 @@ async function btnEditDepartment(){
            
            const btnForm = document.querySelector(".btn-form");
         
-           
            btnForm.addEventListener("click",async (e)=>{
             e.preventDefault();
                 const descriptionInput = document.querySelector("#description")
@@ -200,7 +195,6 @@ async function btnEditDepartment(){
             },1000)
            })
 
-            
         })
     })
 }
@@ -223,11 +217,8 @@ async function btnRemoveDepartment(){
                 },1000);
                
              })
-            
         })
-        
     })
-    
 }
 async function btnViewDepartment(){
     const btnView = document.querySelectorAll(".btn-view");
@@ -291,12 +282,9 @@ async function btnRemoveUser(){
             const btnDel = document.querySelector(".btn-green");
             
             btnDel.addEventListener("click",async ()=>{
-                console.log(btn.id)
+               
                 await deleteUser(btn.id);
-                console.log("removeu");
-               
                 const modal = document.querySelector(".modal-wrapper");
-               
                setTimeout(()=>{
                    modal.remove();
                    
