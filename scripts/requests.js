@@ -89,14 +89,15 @@ export async function registerUser(user){
     });
     if(data.ok){
         const dataJson = await data.json();
-         
+         toastCreate("ok",data.statusText)
         
         setTimeout(()=>{
             window.location.replace("../login/index.html")
-        },2000)
+        },3000)
         return dataJson;    
     }
     else{
+        toastCreate("error",data.statusText)
         console.log(data.statusText)
     } 
 }
