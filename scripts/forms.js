@@ -1,6 +1,7 @@
 
 import { getAllCompany, getAllDepartments, getAllUsers, getAllSectors, getAllNotWorks, hireEmployee, fireEmployee } from "./requests.js";
 import { getLocalStorageUserData } from "./localStorage.js";
+import {renderAllUsers} from "../pages/adminDash/index.js"
 export async function createForm(){
     
     const modal = document.querySelector(".modal");
@@ -87,6 +88,7 @@ async function hireEmployeeEvent(){
        const modalWrapper = document.querySelector(".modal-wrapper");
        setTimeout(()=>{
         modalWrapper.remove()
+        renderAllUsers()
        },500)
     })
 }
@@ -138,6 +140,7 @@ export async function fireEmployeeEvent(id){
     const modalWrapper = document.querySelector(".modal-wrapper");
        setTimeout(()=>{
         modalWrapper.remove()
+        renderAllUsers()
        },500)
    
 }
