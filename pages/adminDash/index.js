@@ -144,9 +144,9 @@ export async function renderAllUsers(){
     ul.innerHTML = ""
     const users = await getAllUsers();
     const companyWork = await getAllSectors();
-    
+    let findCompany = ""
     users.forEach(async (e)=>{
-        let findCompany = ""
+       
         if(e.department_uuid){
              findCompany= await companyWork.find((comp)=>{
                 return comp.uuid == e.department_uuid
@@ -186,8 +186,8 @@ export async function renderAllUsers(){
         ul.appendChild(li)
     })
     
-    btnEditUser();
-    btnRemoveUser()
+   await btnEditUser();
+   await btnRemoveUser();
 }
 renderAllUsers()
 
@@ -291,6 +291,7 @@ async function btnViewDepartment(){
     })
 }
 async function btnEditUser(){
+    
     const btnEditUser = document.querySelectorAll(".btn-edit-user");
     btnEditUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
@@ -309,14 +310,14 @@ async function btnEditUser(){
                 })
                 
                await editUserInfo(btn.id,info);
-               await renderAllUsers();
+               
                const modal = document.querySelector(".modal-wrapper");
                
                setTimeout(()=>{
                    modal.remove();
                    
                },1000);
-               
+               renderAllUsers();
                //estágio, júnior, pleno, sênior
                //home office, presencial, hibrido
             })
