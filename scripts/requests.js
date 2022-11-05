@@ -60,12 +60,13 @@ export async function loginApi(user){
                 window.location.replace("../adminDash/index.html")
             },3000)
         }else{
-            setTimeout(()=>{
-                window.location.replace("../dashboard/index.html")
-            },3000)
             const token = await getLocalStorageToken()
         
             const dataUser = await getUserLogged(token.token);
+            setTimeout(()=>{
+                window.location.replace("../dashboard/index.html")
+            },3000)
+            
            
             localStorage.setItem("dataUser",JSON.stringify(dataUser));
             
