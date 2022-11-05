@@ -1,6 +1,16 @@
 import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
-import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany } from "../../scripts/requests.js";
+import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany, verifyAdmin, verifyUser } from "../../scripts/requests.js";
+
+
+async function verifyToken(){
+    const resp = await verifyUser()
+        if(!resp.is_admin){
+            window.location.replace("../home/index.html")
+        }
+}
+await verifyToken()
+
 
 async function listOptionCompanies(){
     
@@ -134,11 +144,10 @@ export async function renderAllUsers(){
     ul.innerHTML = ""
     const users = await getAllUsers();
     const companyWork = await getAllSectors();
-    
-    users.forEach(async (e)=>{
-        let findCompany = ""
+    let findCompany 
+    users.forEach((e)=>{
         if(e.department_uuid){
-             findCompany= await companyWork.find((comp)=>{
+             findCompany= companyWork.find((comp)=>{
                 return comp.uuid == e.department_uuid
             })
         }
@@ -159,13 +168,12 @@ export async function renderAllUsers(){
         }else{
             pCompanyName.innerText=""
         }
-        
-
         const divBtns = document.createElement("div");
         divBtns.classList.add("div-btns");
         const btnEdit = document.createElement("button");
         btnEdit.classList.add("btn-edit-user");
-        btnEdit.id = e.uuid
+        btnEdit.id = e.uuid;
+        btnEdit.name = e.username
         const btnRemove = document.createElement("button");
         btnRemove.classList.add("btn-remove-user");
         btnRemove.id = e.uuid;
@@ -175,11 +183,12 @@ export async function renderAllUsers(){
         li.append(h3UserName,pLevel,pCompanyName,divBtns);
         ul.appendChild(li)
     })
-    
-    btnEditUser();
-    btnRemoveUser()
+     
+   
 }
-renderAllUsers()
+await renderAllUsers()
+    btnEditUser();
+    btnRemoveUser();
 
 async function btnCreateDepartment(){
     const btnCreate = document.querySelector(".btn-create");
@@ -281,8 +290,11 @@ async function btnViewDepartment(){
     })
 }
 async function btnEditUser(){
+    await renderAllUsers()
     const btnEditUser = document.querySelectorAll(".btn-edit-user");
+        console.log(btnEditUser)
     btnEditUser.forEach((btn)=>{
+        
         btn.addEventListener("click",async ()=>{
             createModal();
             await editUserForm();
@@ -295,18 +307,17 @@ async function btnEditUser(){
                     if(element.value){
                         info[element.id] = element.value
                     }
-                    
                 })
                 
                await editUserInfo(btn.id,info);
-               await renderAllUsers();
+               
                const modal = document.querySelector(".modal-wrapper");
                
                setTimeout(()=>{
                    modal.remove();
                    
                },1000);
-               
+              await renderAllUsers();
                //estágio, júnior, pleno, sênior
                //home office, presencial, hibrido
             })
@@ -317,11 +328,12 @@ async function btnEditUser(){
     
 }
 async function btnRemoveUser(){
+    await renderAllUsers()
     const btnRemoveUser = document.querySelectorAll(".btn-remove-user");
+    console.log(btnRemoveUser)
     
     btnRemoveUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
-            
             createModal();
             await removeUserForm(btn.name);
             const btnDel = document.querySelector(".btn-green");
@@ -334,7 +346,7 @@ async function btnRemoveUser(){
                    modal.remove();
                    
                },1000);
-               renderAllUsers()
+              await renderAllUsers()
             })
         })
     })

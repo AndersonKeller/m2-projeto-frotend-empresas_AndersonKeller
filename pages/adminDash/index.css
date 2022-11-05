@@ -20,6 +20,7 @@ ul{
     max-height: 50vh;
     overflow-y: auto;
     align-items: center;
+    
 }
 li{
     display: flex;

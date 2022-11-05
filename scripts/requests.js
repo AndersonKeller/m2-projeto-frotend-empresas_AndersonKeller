@@ -118,9 +118,9 @@ export async function verifyAdmin(userToken){
     return dataJson
 }
 export async function verifyUser(){
-    const user = await getLocalStorageToken()
+    const user = await getLocalStorageToken() || ""
    
-    const resp = await verifyAdmin(user.token);
+    const resp = await verifyAdmin(user.token) || "";
    
     return resp;
 }
