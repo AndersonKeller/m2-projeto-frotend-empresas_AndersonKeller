@@ -3,7 +3,13 @@ import { getLocalStorageToken, getLocalStorageUserData } from "../../scripts/loc
 import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllSectors, getCoworkers, getDepLocalUser, updateUser, verifyUser } from "../../scripts/requests.js";
 
-
+async function verifyToken(){
+    const resp = await verifyUser()
+        if(resp.is_admin == true){
+            window.location.replace("../home/index.html")
+    }
+}
+await verifyToken()
 
 function logout(){
     const btnLogout = document.querySelector("#btn-logout")
