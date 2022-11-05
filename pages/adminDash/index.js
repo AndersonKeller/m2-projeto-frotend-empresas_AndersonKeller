@@ -1,17 +1,17 @@
 import { createForm, editDepartmentForm, removeDepartementForm, viewDepartmentForm, editUserForm,removeUserForm } from "../../scripts/forms.js";
 import { createModal } from "../../scripts/modal.js";
 import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany, verifyAdmin, verifyUser } from "../../scripts/requests.js";
+console.log("ROdou AdminDAsh")
 
-
-// async function verifyTokenAdmin(){
+async function verifyTokenAdmin(){
     
-//     const resp = await verifyUser()
-//     console.log(resp)
-//         if(!resp.is_admin){
-//             window.location.replace("../home/index.html")
-//         }
-// }
-// await verifyTokenAdmin()
+    const resp = await verifyUser()
+    console.log(resp)
+        if(!resp.is_admin){
+            window.location.replace("../home/index.html")
+        }
+}
+await verifyTokenAdmin()
 
 
 async function listOptionCompanies(){

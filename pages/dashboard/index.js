@@ -3,13 +3,13 @@ import { getLocalStorageToken, getLocalStorageUserData } from "../../scripts/loc
 import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllSectors, getCoworkers, getDepLocalUser, updateUser, verifyUser } from "../../scripts/requests.js";
 
-// async function verifyToken(){
-//     const resp = await verifyUser()
-//         if(resp.is_admin == true){
-//             window.location.replace("../home/index.html")
-//     }
-// }
-// await verifyToken()
+async function verifyToken(){
+    const resp = await verifyUser()
+        if(resp.is_admin == true){
+            window.location.replace("../home/index.html")
+    }
+}
+await verifyToken()
 
 function logout(){
     const btnLogout = document.querySelector("#btn-logout")
@@ -26,16 +26,16 @@ async function renderSectionUser(){
    
     const h2Name = document.createElement("h2");
     h2Name.classList.add("username");
-    h2Name.innerText = await user.username;
+    h2Name.innerText =  user.username;
     const pEmail = document.createElement("p");
     pEmail.classList.add("user-email");
-    pEmail.innerText = await user.email;
+    pEmail.innerText =  user.email;
     const pLevel = document.createElement("p");
     pLevel.classList.add("user-level");
-    pLevel.innerText = await user.professional_level;
+    pLevel.innerText =  user.professional_level;
     const pKind = document.createElement("p");
     pKind.classList.add("user-kind");
-    pKind.innerText = await user.kind_of_work;
+    pKind.innerText =  user.kind_of_work;
 
     const btnEdit = document.createElement("button");
     btnEdit.classList.add("btn-edit-user");
