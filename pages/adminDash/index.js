@@ -5,9 +5,9 @@ import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUse
 
 async function verifyTokenType(){
     const resp = await verifyUser();
-    if(!resp.is_admin){
-        window.location.replace("../home/index.html")
-    }
+    // if(!resp.is_admin){
+    //     window.location.replace("../home/index.html")
+    // }
 }
 verifyTokenType()
 
