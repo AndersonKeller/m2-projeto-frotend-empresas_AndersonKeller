@@ -143,6 +143,7 @@ export async function renderAllUsers(){
     const ul = document.querySelector(".ul-users-dash");
     ul.innerHTML = ""
     const users = await getAllUsers();
+    
     const companyWork = await getAllSectors();
     let findCompany 
     users.forEach((e)=>{
@@ -183,12 +184,12 @@ export async function renderAllUsers(){
         li.append(h3UserName,pLevel,pCompanyName,divBtns);
         ul.appendChild(li)
     })
-     
+    btnEditUser();
+    btnRemoveUser();
    
 }
 await renderAllUsers()
-    btnEditUser();
-    btnRemoveUser();
+    
 
 async function btnCreateDepartment(){
     const btnCreate = document.querySelector(".btn-create");
@@ -290,7 +291,7 @@ async function btnViewDepartment(){
     })
 }
 async function btnEditUser(){
-    await renderAllUsers()
+    
     const btnEditUser = document.querySelectorAll(".btn-edit-user");
         console.log(btnEditUser)
     btnEditUser.forEach((btn)=>{
@@ -328,7 +329,7 @@ async function btnEditUser(){
     
 }
 async function btnRemoveUser(){
-    await renderAllUsers()
+    
     const btnRemoveUser = document.querySelectorAll(".btn-remove-user");
     console.log(btnRemoveUser)
     
