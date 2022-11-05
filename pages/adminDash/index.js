@@ -144,11 +144,10 @@ export async function renderAllUsers(){
     ul.innerHTML = ""
     const users = await getAllUsers();
     const companyWork = await getAllSectors();
-    let findCompany = ""
-    users.forEach(async (e)=>{
-       
+    let findCompany 
+    users.forEach((e)=>{
         if(e.department_uuid){
-             findCompany= await companyWork.find((comp)=>{
+             findCompany= companyWork.find((comp)=>{
                 return comp.uuid == e.department_uuid
             })
         }
@@ -169,13 +168,12 @@ export async function renderAllUsers(){
         }else{
             pCompanyName.innerText=""
         }
-        
-
         const divBtns = document.createElement("div");
         divBtns.classList.add("div-btns");
         const btnEdit = document.createElement("button");
         btnEdit.classList.add("btn-edit-user");
-        btnEdit.id = e.uuid
+        btnEdit.id = e.uuid;
+        btnEdit.name = e.username
         const btnRemove = document.createElement("button");
         btnRemove.classList.add("btn-remove-user");
         btnRemove.id = e.uuid;
@@ -188,7 +186,7 @@ export async function renderAllUsers(){
      
    
 }
-renderAllUsers()
+await renderAllUsers()
     btnEditUser();
     btnRemoveUser();
 
@@ -294,7 +292,7 @@ async function btnViewDepartment(){
 async function btnEditUser(){
     await renderAllUsers()
     const btnEditUser = document.querySelectorAll(".btn-edit-user");
-    
+        console.log(btnEditUser)
     btnEditUser.forEach((btn)=>{
         
         btn.addEventListener("click",async ()=>{
@@ -309,7 +307,6 @@ async function btnEditUser(){
                     if(element.value){
                         info[element.id] = element.value
                     }
-                    
                 })
                 
                await editUserInfo(btn.id,info);
@@ -320,7 +317,7 @@ async function btnEditUser(){
                    modal.remove();
                    
                },1000);
-               renderAllUsers();
+              await renderAllUsers();
                //estágio, júnior, pleno, sênior
                //home office, presencial, hibrido
             })
@@ -333,6 +330,7 @@ async function btnEditUser(){
 async function btnRemoveUser(){
     await renderAllUsers()
     const btnRemoveUser = document.querySelectorAll(".btn-remove-user");
+    console.log(btnRemoveUser)
     
     btnRemoveUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
@@ -348,7 +346,7 @@ async function btnRemoveUser(){
                    modal.remove();
                    
                },1000);
-               renderAllUsers()
+              await renderAllUsers()
             })
         })
     })
