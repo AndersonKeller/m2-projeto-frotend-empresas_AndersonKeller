@@ -185,11 +185,12 @@ export async function renderAllUsers(){
         li.append(h3UserName,pLevel,pCompanyName,divBtns);
         ul.appendChild(li)
     })
-    
-   await btnEditUser();
-   await btnRemoveUser();
+     
+   
 }
 renderAllUsers()
+    btnEditUser();
+    btnRemoveUser();
 
 async function btnCreateDepartment(){
     const btnCreate = document.querySelector(".btn-create");
@@ -291,9 +292,11 @@ async function btnViewDepartment(){
     })
 }
 async function btnEditUser(){
-    
+    await renderAllUsers()
     const btnEditUser = document.querySelectorAll(".btn-edit-user");
+    
     btnEditUser.forEach((btn)=>{
+        
         btn.addEventListener("click",async ()=>{
             createModal();
             await editUserForm();
@@ -328,11 +331,11 @@ async function btnEditUser(){
     
 }
 async function btnRemoveUser(){
+    await renderAllUsers()
     const btnRemoveUser = document.querySelectorAll(".btn-remove-user");
     
     btnRemoveUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{
-            
             createModal();
             await removeUserForm(btn.name);
             const btnDel = document.querySelector(".btn-green");
