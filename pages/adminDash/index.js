@@ -3,13 +3,15 @@ import { createModal } from "../../scripts/modal.js";
 import { createDepartment, deleteDepartment, deleteUser, editDepartment, editUserInfo, getAllCompany, getAllDepartments, getAllSectors, getAllUsers, getSectorsByCompany, verifyAdmin, verifyUser } from "../../scripts/requests.js";
 
 
-async function verifyToken(){
-    const resp = await verifyUser()
-        if(!resp.is_admin){
-            window.location.replace("../home/index.html")
-        }
-}
-await verifyToken()
+// async function verifyTokenAdmin(){
+    
+//     const resp = await verifyUser()
+//     console.log(resp)
+//         if(!resp.is_admin){
+//             window.location.replace("../home/index.html")
+//         }
+// }
+// await verifyTokenAdmin()
 
 
 async function listOptionCompanies(){
@@ -188,7 +190,7 @@ export async function renderAllUsers(){
     btnRemoveUser();
    
 }
-await renderAllUsers()
+ renderAllUsers()
     
 
 async function btnCreateDepartment(){
@@ -293,7 +295,7 @@ async function btnViewDepartment(){
 async function btnEditUser(){
     
     const btnEditUser = document.querySelectorAll(".btn-edit-user");
-        console.log(btnEditUser)
+        
     btnEditUser.forEach((btn)=>{
         
         btn.addEventListener("click",async ()=>{
@@ -331,7 +333,7 @@ async function btnEditUser(){
 async function btnRemoveUser(){
     
     const btnRemoveUser = document.querySelectorAll(".btn-remove-user");
-    console.log(btnRemoveUser)
+   
     
     btnRemoveUser.forEach((btn)=>{
         btn.addEventListener("click",async ()=>{

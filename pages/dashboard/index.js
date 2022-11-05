@@ -3,13 +3,13 @@ import { getLocalStorageToken, getLocalStorageUserData } from "../../scripts/loc
 import { createModal } from "../../scripts/modal.js";
 import { getAllCompany, getAllSectors, getCoworkers, getDepLocalUser, updateUser, verifyUser } from "../../scripts/requests.js";
 
-async function verifyToken(){
-    const resp = await verifyUser()
-        if(resp.is_admin == true){
-            window.location.replace("../home/index.html")
-    }
-}
-await verifyToken()
+// async function verifyToken(){
+//     const resp = await verifyUser()
+//         if(resp.is_admin == true){
+//             window.location.replace("../home/index.html")
+//     }
+// }
+// await verifyToken()
 
 function logout(){
     const btnLogout = document.querySelector("#btn-logout")
@@ -44,9 +44,10 @@ async function renderSectionUser(){
 
     btnUpdateUser()
 }
-renderSectionUser()
-{/* <li class="li-not-work">Você ainda não foi contratado</li> */}
+await renderSectionUser()
+
 async function renderCoWorks(){
+    await renderSectionUser()
     const ul  = document.querySelector(".ul-coworks");
     ul.innerHTML=""
     const user = await getLocalStorageUserData();
