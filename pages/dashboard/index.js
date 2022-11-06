@@ -5,7 +5,8 @@ import { getAllCompany, getAllSectors, getCoworkers, getDepLocalUser, updateUser
 
 async function verifyToken(){
     const resp = await verifyUser()
-        if(resp.is_admin == true){
+    
+        if(resp.is_admin == true || resp.erro == "Token Invalid"){
             window.location.replace("../home/index.html")
     }
 }
